@@ -93,11 +93,10 @@ app.get("*", (req,res,next) => {
 // Error Handling Middleware
 app.use((err, req, res, next) => {
     let { statusCode = 500, message = "Something Went Wrond" } = err;
-    // res.status(statusCode).send(message);
     res.render("error.ejs", { message })
 })
 
 
-app.listen(8080, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log("Server is listening on port 8080");
 })
