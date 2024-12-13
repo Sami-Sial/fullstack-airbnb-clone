@@ -1,0 +1,88 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<link rel="stylesheet" href="/css/new-editListing.css" />
+
+<div class="listing-form-container">
+  <form
+    method="post"
+    action="/listings"
+    id="new-listing-form"
+    enctype="multipart/form-data"
+  >
+    <h2>Create Listing</h2>
+
+    <div class="input-group">
+      <label for="title">Title</label> <br />
+      <input
+        type="text"
+        placeholder="write title"
+        name="title"
+        class="title"
+        id="title"
+        required
+      />
+    </div>
+
+    <div class="input-group">
+      <label for="description">Description</label> <br />
+      <textarea
+        placeholder="decription"
+        name="description"
+        class="description"
+        id="description"
+        required
+      ></textarea>
+    </div>
+
+    <div class="input-group">
+      <label for="image">Image</label> <br />
+      <input
+        type="file"
+        name="image"
+        placeholder="enter image url"
+        class="image"
+        id="image"
+        required
+      />
+    </div>
+
+    <div class="input-group">
+      <span class="group">
+        <label for="price">Price</label>
+        <input
+          type="number"
+          placeholder="enter price"
+          class="price"
+          name="price"
+          id="price"
+          required
+        />
+      </span>
+      <span class="group">
+        <label for="container">Country</label>
+        <input
+          type="text"
+          name="country"
+          placeholder="enter country name"
+          class="country"
+          id="country"
+          required
+        />
+      </span>
+    </div>
+
+    <div class="input-group">
+      <label for="location">Location</label> <br />
+      <input
+        type="text"
+        name="location"
+        placeholder="enter location"
+        class="location"
+        id="location"
+        required
+      />
+    </div>
+
+    <div class="btn"><button>Submit</button></div>
+  </form>
+</div>

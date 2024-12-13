@@ -1,0 +1,181 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    padding: 0 4rem;
+}
+
+.container {
+    min-height: calc(100vh - 6rem - 5rem);
+}
+
+
+/* NAVBAR */
+#navbar {
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid lightgray;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background-color: white;
+}
+
+#navbar-left-nav {
+    display: flex;
+    align-items: center;
+}
+
+#navbar-middle {
+    display: flex;
+    gap: 5px;
+}
+
+#navbar-middle #search-input {
+    height: 35px;
+    border-radius: 3rem;
+    text-align: center;
+    font-size: 1rem;
+    border: 1px solid gray;    
+}
+
+#navbar-middle #search-btn {
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+#search-btn i {
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    color: black;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+.fa-compass {
+    color: red;
+    font-size: 2rem;
+}
+
+#signup-btn, #login-btn {
+    font-size: 1rem;
+}
+
+#signup-btn:hover, #login-btn:hover {
+    opacity: 0.7;
+}
+
+#user-menu {
+    display: none;
+}
+
+
+/* Flash Message */
+.flash-container {
+    background-color: pink;
+    padding-left: 10px;
+    height: 2.5rem;
+    width: 500px;
+    margin: 0.3rem auto;
+    line-height: 2.5rem;
+    font-size: 18px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.close-flash {
+    height: 2.5rem;
+    width: 55px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.close-flash:hover {
+    border: 1px solid gray;
+}
+
+
+/* FORM VALIDATION */
+
+
+/* FOOTER */
+footer {
+    height: 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #ebebeb;
+    font-size: 1rem;
+}
+
+#footer-socials a {
+    margin-right: 10px;
+    font-size: 1.2rem;
+    color: black;
+}
+
+#footer-info-links a {
+    color: black;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+#footer-info-links a:hover {
+    text-decoration: underline;
+}
+
+
+/* Media Queries */
+@media screen  and (max-width:1100px){
+    body {
+        padding: 0 2rem;
+    }
+}
+
+@media screen  and (max-width:950px){
+    .nav-link {
+        margin-right: 5px;
+    }
+}
+
+@media screen  and (max-width:800px){
+    #navbar-right-nav {
+        display: none;
+    }
+    #user-menu {
+        display: inline;
+    }
+}
+
+@media screen  and (max-width:570px){
+    #navbar-left-nav {
+        display: none;
+    }
+   #search-input {
+    width: 50vw;
+   }
+}
+
+@media screen  and (max-width:420px){
+   #search-input {
+     width: 35vw;
+   }
+}
+

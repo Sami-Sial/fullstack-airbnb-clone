@@ -1,0 +1,24 @@
+<div id="navbar">
+    <div id="navbar-left-nav">
+        <a href="/listings" class="nav-link"><i class="fa-regular fa-compass"></i></a>
+        <a href="/listings" class="nav-link">Explore</a>
+    </div>
+    <div id="navbar-middle">
+        <input id="search-input" type="text">
+        <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+    <div id="navbar-right-nav">
+        <a href="/listings/new" class="nav-link">Add New Listing</a>
+        <% if(!currUser){ %>
+           <b><a href="/signup" class="nav-link" id="signup-btn">SignUp</a></b>
+           <b><a href="/login" class="nav-link" id="login-btn">Login</a></b>
+        <% } %>
+        <% if(currUser){ %>
+            <b><a href="/logout" class="nav-link">Logout</a></b>
+        <% } %>
+    </div>
+    <div id="user-menu">
+        <i class="fa-solid fa-bars"></i>
+        <i fa-solid fa-user></i>menu
+    </div>
+</div>

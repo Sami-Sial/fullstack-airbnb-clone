@@ -1,0 +1,81 @@
+/* NEW LISTING FORM  & EDIT LISTING FORM*/
+.listing-form-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+ }
+ 
+ form {
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+ }
+ 
+ label {
+     font-size: 17px;
+ }
+ 
+ .input-group .group {
+     display: inline-block;
+     margin-right: 10px;
+     width: 250px;
+ }
+ 
+ input {
+     padding-left: 5px;
+     font-size: 16px;
+ }
+ 
+ .title, .location {
+     width: 500px;
+     height: 35px;
+     border-radius: 5px;
+     border: 2px solid lightgray;
+ }
+ 
+ .image {
+     width: 500px;
+     padding: 0;
+     border-radius: 5px;
+     border: 2px solid lightgray;
+ }
+ 
+ .price, .country {
+     width: 95%;
+     height: 30px;
+     border-radius: 5px;
+     border: 2px solid lightgray;
+ }
+ 
+ .description {
+     width: 500px;
+     height: 70px;
+     border-radius: 5px;
+     border: 2px solid lightgray;
+     padding: 5px;
+     font-size: 16px;
+ }
+ 
+ .btn button {
+     padding: 10px;
+     border-radius: 5px;
+     background-color: red;
+     color: white;
+     border: none;
+     cursor: pointer;
+     margin-top: 10px;
+ }
+
+
+ /* Media Queries */
+ @media screen and (max-width:600px) {
+    .listing-form-container input {
+        width: 90vw;
+    }
+    .input-group .group {
+        width: 90vw;
+    }
+    .description {
+        width: 90vw;
+    }
+ }

@@ -1,0 +1,89 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<link rel="stylesheet" href="/css/new-editListing.css" />
+
+<div class="listing-form-container">
+  <form
+    method="post"
+    action="/listings/<%=listing._id%>?_method=PUT"
+    enctype="multipart/form-data"
+  >
+    <h2>Edit Listing Details</h2>
+
+    <div class="input-group">
+      <label for="title">Title</label> <br />
+      <input
+        type="text"
+        placeholder="write title"
+        name="title"
+        id="title"
+        value="<%=listing.title%>"
+        required
+      />
+    </div>
+
+    <div class="input-group">
+      <label for="description">Description</label> <br />
+      <textarea
+        placeholder="decription"
+        name="description"
+        class="description"
+        id="description"
+        required
+      >
+<%=listing.description%></textarea
+      >
+    </div>
+
+    <div>
+      <p>Original Image</p>
+      <img src="<%=listing.image.url%>" alt="" height="130px" width="150px" />
+    </div>
+
+    <div class="input-group">
+      <label for="image">Upload new image</label> <br />
+      <input type="file" name="image" id="image" class="image" />
+    </div>
+    <div class="input-group">
+      <span class="group">
+        <label for="price">Price</label>
+        <input
+          type="number"
+          placeholder="enter price"
+          name="price"
+          class="price"
+          id="price"
+          value="<%=listing.price%>"
+          required
+        />
+      </span>
+      <span class="group">
+        <label for="container">Country</label>
+        <input
+          type="text"
+          name="country"
+          placeholder="enter country name"
+          class="country"
+          id="country"
+          value="<%=listing.country%>"
+          required
+        />
+      </span>
+    </div>
+
+    <div class="input-group">
+      <label for="location">Location</label> <br />
+      <input
+        type="text"
+        name="location"
+        placeholder="enter location"
+        class="location"
+        id="location"
+        value="<%=listing.location%>"
+        required
+      />
+    </div>
+
+    <div class="btn"><button>Submit</button></div>
+  </form>
+</div>

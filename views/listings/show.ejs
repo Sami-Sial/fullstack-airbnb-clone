@@ -1,0 +1,109 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<link rel="stylesheet" href="/css/showListing.css" />
+<link rel="stylesheet" href="/css/rating.css" />
+<link
+  href="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.css"
+  rel="stylesheet"
+/>
+
+<script>
+  let coordinates = <%- JSON.stringify(listing.geometry.coordinates) %>;
+  console.log(coordinates);
+  let maptiler_api_key = "<%=process.env.MAPTILER_SDK_API_KEY%>";
+</script>
+
+<div id="listing-details-container">
+  <div id="listing-details">
+    <h2><%=listing.title%></h2>
+    <img src="<%=listing.image.url%>" alt="" class="listing-details-img" />
+    <div class="listing-details-card-info">
+      <p class="listing-owner"><%= listing.owner.username %></p>
+      <p><%=listing.description%></p>
+      <p><%=listing.price.toLocaleString("en-IN")%></p>
+      <p id="listing-location"><%=listing.location%></p>
+      <p><%=listing.country%></p>
+    </div>
+    <br /><br />
+    <% if (currUser && currUser._id.equals(listing.owner._id)){ %>
+    <div class="btns">
+      <a href="/listings/<%=listing._id%>/edit" id="edit-btn"
+        ><button>Edit Listing</button></a
+      >
+      <form method="post" action="/listings/<%=listing._id%>?_method=DELETE">
+        <button>Delete Listing</button>
+      </form>
+    </div>
+    <br /><br />
+    <% } %>
+  </div>
+</div>
+
+<% if(currUser){ %>
+<br /><br />
+<hr />
+<div class="review-form">
+  <form method="post" action="/listings/<%=listing._id%>/reviews">
+    <h2>Leave Rveiew</h2>
+    <fieldset class="starability-heart">
+      <legend><b>Rating</b></legend>
+      <input
+        type="radio"
+        id="no-rate"
+        class="input-no-rate"
+        name="review[rating]"
+        value="1"
+        checked
+        aria-label="No rating."
+      />
+      <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+      <label for="first-rate1" title="Terrible">1 star</label>
+      <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+      <label for="first-rate2" title="Not good">2 stars</label>
+      <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+      <label for="first-rate3" title="Average">3 stars</label>
+      <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+      <label for="first-rate4" title="Very good">4 stars</label>
+      <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+      <label for="first-rate5" title="Amazing">5 stars</label>
+    </fieldset>
+    <label for="review-comment"><b>Comment</b></label> <br />
+    <textarea name="review[comment]" id="review-comment"></textarea> <br />
+    <button id="review-btn">Submit</button>
+  </form>
+</div>
+
+<hr />
+<% } %> <% if(listing.reviews.length> 0) { %>
+<div class="review-container">
+  <h2>All Reviews</h2>
+  <div class="reviews">
+    <% for(review of listing.reviews) { %>
+    <div class="review-card">
+      <h5><%=review.author.username%></h5>
+      <p class="starability-result" data-rating="<%=review.rating%>"></p>
+      <p>Comment : <%=review.comment%></p>
+      <form
+        method="post"
+        action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=Delete"
+      >
+        <button id="delete-review-btn">Delete</button>
+      </form>
+    </div>
+    <% } %>
+  </div>
+</div>
+<% } %>
+
+<hr />
+<br /><br />
+
+<div class="map-wrapper">
+  <div id="map"></div>
+</div>
+
+<br /><br />
+
+<script src="https://cdn.maptiler.com/client-js/v2.0.0/maptiler-client.umd.min.js"></script>
+<script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.umd.min.js"></script>
+<script src="/js/showlisting.js"></script>

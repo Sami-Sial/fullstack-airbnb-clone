@@ -1,0 +1,21 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<link rel="stylesheet" href="/css/signup-login.css" />
+
+<div id="login-form-container">
+  <form method="post" action="/login" id="login-form">
+    <h2>Login on Wanderlust</h2>
+
+    <div class="input-group">
+      <label for="username">Username</label> <br />
+      <input type="text" name="username" id="username" required />
+    </div>
+
+    <div class="input-group">
+      <label for="username">Password</label> <br />
+      <input type="password" name="password" id="password" required />
+    </div>
+
+    <button id="login-btn">Login</button>
+  </form>
+</div>

@@ -1,0 +1,162 @@
+/* LISTING DETAILS */
+#listing-details-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+}
+
+#listing-details {
+   width: 500px;
+}
+
+#listing-details h2 {
+    margin-bottom: 3px;
+}
+
+.listing-details-img {
+    width: 100%;
+    height: 250px;
+    border-radius: 5px;
+} 
+
+.listing-details-card-info p {
+     margin-bottom: 3px;
+}
+
+.listing-details-card-info .listing-owner {
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.btns {
+    display: inline-block;
+}
+
+.btns form {
+    display: inline;
+}
+
+.btns form button {
+    padding: 7px 12px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btns a button {
+    padding: 7px 12px;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Review Form */
+.review-form {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+    align-items: center;
+}
+
+#review-comment {
+    padding: 10px;
+    height: 100px;
+    width: 500px;
+    font-size: 16spx;
+}
+
+#review-btn {
+    width: fit-content;
+    margin-top: 10px;
+    padding: 7px 12px;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.review-form h2 {
+    margin-bottom: 2rem;
+}
+
+
+/* Listing Reviews */
+.review-container{
+   padding: 10px 30px;
+}
+
+.reviews {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.review-card{
+    width: 40%;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    padding: 15px 10px;
+    margin-bottom: 20px;
+}
+
+.starability-result {
+    margin-bottom: 13px;
+}
+
+.review-card h5 {
+    margin-bottom: 5px;
+}
+
+#delete-review-btn {
+    width: fit-content;
+    margin-top: 20px;
+    padding: 7px 12px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Map */
+.map-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+#map {
+    height: 50vh;
+    width: 50vw;
+    border: 2px solid gray;
+}
+
+
+/* Media Queries */
+@media screen and (max-width:1000px) {
+   #map {
+    width: 80vw;
+   }
+}
+
+@media screen and (max-width:540px){
+    #review-comment{
+        width: 300px;
+    }
+    #map {
+        width: 98vw;
+    }
+}
+
+@media screen and (max-width:330px) {
+    #review-comment {
+        width: 250px;
+    }
+    #map {
+        height: 40vh;
+    }
+}

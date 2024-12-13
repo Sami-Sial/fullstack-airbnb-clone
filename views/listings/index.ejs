@@ -1,0 +1,58 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<link rel="stylesheet" href="/css/index.css" />
+
+<div id="filters-menu">
+  <i class="fa-solid fa-bars"></i>
+  <big>Filters</big>
+</div>
+
+<div id="filters">
+  <div class="filter">
+    <i class="fa-solid fa-mountain-city"></i>
+    <p>Iconic Cities</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-mountain"></i>
+    <p>Mountains</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-person-swimming"></i>
+    <p>Amazing Pools</p>
+  </div>
+  <div class="filter">
+    <i class="fa-solid fa-cow"></i>
+    <p>Farms</p>
+  </div>
+
+  <div id="tax-switch">
+    <p>Display total after taxes</p>
+    <div id="switch">
+      <div id="circle"></div>
+    </div>
+  </div>
+</div>
+
+<h1>All Listings</h1>
+<div id="cards-container">
+  <% for(listing of allListings){ %>
+  <div class="card">
+    <a href="/listings/<%=listing._id%>" class="listing-link">
+      <div class="card-img">
+        <img src="<%=listing.image.url%>" alt="" />
+      </div>
+    </a>
+    <div class="card-info">
+      <p class="card-title"><%=listing.title%></p>
+      <p>
+        <%=listing.price.toLocaleString("en-IN")%> / night<i class="tax-info">
+          +18% GST</i
+        >
+      </p>
+    </div>
+  </div>
+
+  <% } %>
+</div>
+
+<script src="/js/index.js"></script>
