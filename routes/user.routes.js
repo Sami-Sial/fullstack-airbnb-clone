@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.route("/signup")
 .get(renderSignupForm)
-.post(validateUser, wrapAsync(registerUser));
+.post(wrapAsync(registerUser));
 
 router.route("/login")
 .get(renderLoginForm)

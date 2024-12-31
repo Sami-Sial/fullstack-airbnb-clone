@@ -7,7 +7,7 @@ const router = express.Router({mergeParams: true});
 
 
 // Reviews Post Route
-router.post("/",isLoggedIn, validateReview, wrapAsync(createReview))
+router.post("/",isLoggedIn, wrapAsync(createReview))
 
 // Reviews Delete Route
 router.delete("/:reviewId", isLoggedIn, isReviewAuthor, destroyReview)

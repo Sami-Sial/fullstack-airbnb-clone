@@ -1,5 +1,7 @@
 // Displaying Map Functionality
 
+console.log(coordinates);
+
 maptilersdk.config.apiKey = maptiler_api_key;
 
 const map = new maptilersdk.Map({

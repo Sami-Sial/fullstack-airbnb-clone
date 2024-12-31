@@ -23,6 +23,8 @@ module.exports.showlisting = async(req,res,next) => {
 }
 
 module.exports.createListing = async (req, res) => {
+    console.log(req.body);
+    console.log(req.file)
     let url = req.file.path;
     let filename = req.file.filename;
     

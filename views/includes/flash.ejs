@@ -1,31 +1,26 @@
 <% if(success && success.length>0) { %>
-    <div class="flash-container">
-        <div class="flash-mag">
-            <%= success %>
-        </div>
-        <div class="close-flash">
-            <i class="fa-solid fa-xmark"></i>
-        </div>
-    </div>
+<div class="flash-container">
+  <div class="flash-mag"><%= success %></div>
+  <div class="close-flash">
+    <i class="fa-solid fa-xmark"></i>
+  </div>
+</div>
+<% } %> <% if(error && error.length>0) { %>
+<div class="flash-container" bg="red">
+  <div class="flash-mag"><%= error %></div>
+  <div class="close-flash">
+    <i class="fa-solid fa-xmark"></i>
+  </div>
+</div>
 <% } %>
-
-<% if(error && error.length>0) { %>
-    <div class="flash-container" bg="red">
-        <div class="flash-mag">
-            <%= error %>
-        </div>
-        <div class="close-flash">
-            <i class="fa-solid fa-xmark"></i>
-        </div>
-    </div>
-<% } %>
-
 
 <script>
-    // Close flash message
-    let closeFlashBtn = document.querySelector(".close-flash");
-    let flashMsg = document.querySelector(".flash-container");
+  // Close flash message
+  let closeFlashBtn = document.querySelector(".close-flash");
+  let flashMsg = document.querySelector(".flash-container");
+  if (closeFlashBtn) {
     closeFlashBtn.addEventListener("click", () => {
-        flashMsg.style.display = "none";
-    })
+      flashMsg.style.display = "none";
+    });
+  }
 </script>

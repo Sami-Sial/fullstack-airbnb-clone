@@ -11,7 +11,7 @@ const router = express.Router();
 // index, create route
 router.route("/")
 .get(wrapAsync(index))
-.post(isLoggedIn, validateListing, upload.single("image"), wrapAsync(createListing))
+.post(isLoggedIn, upload.single("image"), wrapAsync(createListing))
 
 // new route
 router.get("/new", isLoggedIn, renderNewForm)
@@ -19,7 +19,7 @@ router.get("/new", isLoggedIn, renderNewForm)
 // show, update, destroy route
 router.route("/:id")
 .get(wrapAsync(showlisting))
-.put(isLoggedIn, isOwner, validateListing, upload.single("image"), wrapAsync(updateListing))
+.put(isLoggedIn, isOwner, upload.single("image"), wrapAsync(updateListing))
 .delete(isLoggedIn, isOwner, wrapAsync(destroyListing))
 
 // Edit Route
