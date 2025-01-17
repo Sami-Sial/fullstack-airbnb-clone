@@ -8,7 +8,7 @@ module.exports.renderSignupForm = (req,res) => {
 
 module.exports.registerUser = async (req, res) => {
     let { email } = req.body;
-    let isAlreadyRegistered = await User.findOne(email);
+    let isAlreadyRegistered = await User.findOne({ email });
     if (isAlreadyRegistered) {
         req.flash("error", "A User with given Email already exists.");
         res.redirect("/signup");

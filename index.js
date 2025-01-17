@@ -46,7 +46,7 @@ const store = MongoStore.create({
 })
 
 store.on("error", () => {
-    console.log("Error in Mogo Session Store", error.message);
+    console.log("Error in Mogo Session Store", error);
 })
 
 const sessionOptions = {
@@ -93,10 +93,11 @@ app.get("*", (req,res,next) => {
 // Error Handling Middleware
 app.use((err, req, res, next) => {
     let { statusCode = 500, message = "Something Went Wrond" } = err;
+    // res.status(statusCode).send(message);
     res.render("error.ejs", { message })
 })
 
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(8080, () => {
     console.log("Server is listening on port 8080");
 })

@@ -3,7 +3,7 @@ const Review = require("../models/review.model.js");
 const { joiListingValidationSchema, joiReviewValidationSchema, joiUserValidationSchema } = require("../utils/schemaValidation.js");
 const ExpressError = require("../utils/expressError.js");
 
-module.exports.validateListing = (req,res,next) => {
+module.exports.validateListing = (req, res, next) => {
     let {error} = joiListingValidationSchema.validate(req.body);
     console.log(error);
     if (error){
@@ -36,7 +36,7 @@ module.exports.validateUser = (req,res,next) => {
     }
 }
 
-module.exports.isLoggedIn = (req,res,next) => {
+module.exports.isLoggedIn = (req, res, next) => {
     if(!req.isAuthenticated()){
         req.session.redirectUrl = req.originalUrl;
         req.flash("error", "You must be logged in to create listing");
