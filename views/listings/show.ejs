@@ -8,7 +8,7 @@
 />
 
 <script>
-  let coordinates = <%- JSON.stringify(listing.geometry.coordinates) %>;
+  let coordinates = "<%- JSON.stringify(listing.geometry.coordinates) %>";
   let maptiler_api_key = "<%=process.env.MAPTILER_SDK_API_KEY%>";
 </script>
 
