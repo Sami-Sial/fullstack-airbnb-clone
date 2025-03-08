@@ -1,21 +1,22 @@
-# 🏡 Real Estate App
+# 🏡 Real Estate App - Node.js & EJS
 
-A modern real estate web application that allows users to browse properties, filter listings, and connect with agents.
+A real estate listing application built using Node.js, Express, and EJS templating engine.
 
-## 🚀 Features
+## ✨ Features
+- 🏠 List properties for sale or rent
+- 🔍 Search and filter properties
+- 📝 User authentication (login/register)
+- 📸 Upload property images
+- 💬 Contact property owners
+- 🎨 Responsive design with pure css
+- Map pointing to listing location
+- Review adding and deleting etc.
 
-- 🔑 User authentication (register/login)
-- 🏠 Property listings with detailed views
-- 📍 Location-based search & filters
-- ❤️ Save & favorite properties
-- 📊 Admin dashboard to manage properties & users
-
-## 🏗️ Tech Stack
-
-- **Frontend:** HTML, CSS, JS, EJS Templates
-- **Backend:** Node.js / Express.js 
-- **Database:** MongoDB / Mongoose
-- **Authentication:** Session based authentication
-- **Map Integration:** Maotiler
-- **Hosting:** Back4app
+## 🛠 Tech Stack
+- **Backend:** Node.js, Express.js
+- **Templating Engine:** EJS
+- **Database:** MongoDB, Mongoose
+- **Styling:** CSS
+- **Authentication:** Passport.js, bcrypt
+- **Map:** Maptiler
 
