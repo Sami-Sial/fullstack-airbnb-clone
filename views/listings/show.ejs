@@ -7,11 +7,6 @@
   rel="stylesheet"
 />
 
-<script>
-  let coordinates = <%- JSON.stringify(listing.geometry.coordinates) %>;
-  let maptiler_api_key = "<%=process.env.MAPTILER_SDK_API_KEY%>";
-</script>
-
 <div id="listing-details-container">
   <div id="listing-details">
     <h2><%=listing.title%></h2>
@@ -105,4 +100,22 @@
 
 <script src="https://cdn.maptiler.com/client-js/v2.0.0/maptiler-client.umd.min.js"></script>
 <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.umd.min.js"></script>
-<script src="/js/showlisting.js"></script>
+
+<script>
+      // Displaying Map Functionality
+  let coordinates = "<%=listing.geometry.coordinates%>";
+  let coordinatesArr = coordinates.split(",");
+  let maptiler_api_key = "<%=process.env.MAPTILER_SDK_API_KEY%>";
+  console.log(coordinates);
+
+  maptilersdk.config.apiKey = maptiler_api_key;
+
+  const map = new maptilersdk.Map({
+    container: "map",
+    style: "streets-v2",
+    center: coordinatesArr,
+    zoom: 9,
+  });
+
+  const marker = new maptilersdk.Marker().setLngLat(coordinatesArr).addTo(map);
+</script>
