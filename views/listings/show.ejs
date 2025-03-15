@@ -6,116 +6,288 @@
   href="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.css"
   rel="stylesheet"
 />
+<link
+  href="https://cdn.maptiler.com/maptiler-geocoding-control/v2.1.4/style.css"
+  rel="stylesheet"
+/>
 
 <div id="listing-details-container">
   <div id="listing-details">
-    <h2><%=listing.title%></h2>
-    <img src="<%=listing.image.url%>" alt="" class="listing-details-img" />
-    <div class="listing-details-card-info">
-      <p class="listing-owner"><%= listing.owner.username %></p>
-      <p><%=listing.description%></p>
-      <p><%=listing.price.toLocaleString("en-IN")%></p>
-      <p id="listing-location"><%=listing.location%></p>
-      <p><%=listing.country%></p>
-    </div>
-    <br /><br />
-    <% if (currUser && currUser._id.equals(listing.owner._id)){ %>
-    <div class="btns">
-      <a href="/listings/<%=listing._id%>/edit" id="edit-btn"
-        ><button>Edit Listing</button></a
-      >
-      <form method="post" action="/listings/<%=listing._id%>?_method=DELETE">
-        <button>Delete Listing</button>
-      </form>
-    </div>
-    <br /><br />
-    <% } %>
-  </div>
-</div>
+    <h4 style="font-weight: bold; margin: 0"><%=listing.title%></h4>
+    <p><%=listing.address%></p>
 
-<% if(currUser){ %>
-<br /><br />
-<hr />
-<div class="review-form">
-  <form method="post" action="/listings/<%=listing._id%>/reviews">
-    <h2>Leave Rveiew</h2>
-    <fieldset class="starability-heart">
-      <legend><b>Rating</b></legend>
-      <input
-        type="radio"
-        id="no-rate"
-        class="input-no-rate"
-        name="review[rating]"
-        value="1"
-        checked
-        aria-label="No rating."
-      />
-      <input type="radio" id="first-rate1" name="review[rating]" value="1" />
-      <label for="first-rate1" title="Terrible">1 star</label>
-      <input type="radio" id="first-rate2" name="review[rating]" value="2" />
-      <label for="first-rate2" title="Not good">2 stars</label>
-      <input type="radio" id="first-rate3" name="review[rating]" value="3" />
-      <label for="first-rate3" title="Average">3 stars</label>
-      <input type="radio" id="first-rate4" name="review[rating]" value="4" />
-      <label for="first-rate4" title="Very good">4 stars</label>
-      <input type="radio" id="first-rate5" name="review[rating]" value="5" />
-      <label for="first-rate5" title="Amazing">5 stars</label>
-    </fieldset>
-    <label for="review-comment"><b>Comment</b></label> <br />
-    <textarea name="review[comment]" id="review-comment"></textarea> <br />
-    <button id="review-btn">Submit</button>
-  </form>
-</div>
+    <div class="slider-container">
+      <div class="slider-images">
+        <% for (let image of listing.images) { %>
+        <img src="<%=image.url%>" alt="" />
+        <% } %>
+      </div>
+      <div class="controls">
+        <div class="prev-btn"><</div>
+        <div class="next-btn">></div>
+      </div>
+    </div>
 
-<hr />
-<% } %> <% if(listing.reviews.length> 0) { %>
-<div class="review-container">
-  <h2>All Reviews</h2>
-  <div class="reviews">
-    <% for(review of listing.reviews) { %>
-    <div class="review-card">
-      <h5><%=review.author.username%></h5>
-      <p class="starability-result" data-rating="<%=review.rating%>"></p>
-      <p>Comment : <%=review.comment%></p>
+    <div style="display: flex; justify-content: space-between; padding: 2rem 0">
+      <div style="width: 40%">
+        <div style="display: flex; flex-direction: column; gap: 15px">
+          <div>
+            <p style="font-weight: bold" class="listing-owner">
+              Hosted By <%= listing.owner?.username %>
+            </p>
+            <!-- <img src="" width="40px" height="40px" alt="" /> -->
+
+            <p>
+              <%=listing.propertyInfo?.guests%> Guests &nbsp;&nbsp;&nbsp;
+              <%=listing.propertyInfo?.rooms%> Rooms &nbsp;&nbsp;&nbsp;
+              <%=listing.propertyInfo?.beds%> Beds&nbsp;&nbsp;&nbsp;
+              <%=listing.propertyInfo?.bathrooms%> Bathrooms
+            </p>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 5px">
+            <i class="fa-solid fa-2x fa-home"></i>
+            <div>
+              <p style="font-weight: bold"><%=listing.propertyInfo?.type%></p>
+              <span
+                >This property is of category
+                <%=listing.propertyInfo?.type%></span
+              >
+            </div>
+          </div>
+
+          <p>
+            <%=listing.description%>lorem ipsu kdsf nksidl kareh asfh sakhfiu
+            eihryqhi
+          </p>
+        </div>
+      </div>
+
       <form
         method="post"
-        action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=Delete"
+        action="/listing/<%=listing._id%>/reserve"
+        style="width: 40%"
       >
-        <button id="delete-review-btn">Delete</button>
+        <h5 style="margin: 0">
+          $<%=listing.price.toLocaleString("en-IN")%> / night
+        </h5>
+
+        <% for(res of reservation) { %> <%if(res.status == "confirmed") { %>
+        <p style="font-weight: bold; margin-top: 1rem; color: green">
+          Already reserved from <%=res.reservationDateRange.from%> -to-
+          <%=res.reservationDateRange.to%>
+        </p>
+        <% } %> <% if(res.status == "pending" || res.status == "cancelled" ||
+        reservation.length<=0) { %>
+        <p>Available for Reservation</p>
+        <% } %> <% } %>
+
+        <div>
+          <label for="from"></label>
+          <input
+            type="date"
+            name="from"
+            placeholder="From"
+            id="from"
+            required
+          />
+        </div>
+        <div style="margin-bottom: 1rem">
+          <label for="to"></label>
+          <input type="date" name="to" placeholder="From" id="to" required />
+        </div>
+        <button type="button submit" class="btn btn-dark w-100">Reserve</button>
       </form>
+    </div>
+  </div>
+
+  <br />
+
+  <div class="map-wrapper">
+    <div id="map"></div>
+  </div>
+
+  <% if(currUser){ %>
+  <br />
+  <div style="display: flex; justify-content: space-between; width: 70vw">
+    <div
+      style="width: 40%; border: 2px solid lightgrey; padding: 5px 10px"
+      class="review-form"
+    >
+      <form method="post" action="/listings/<%=listing._id%>/reviews">
+        <h4 style="font-weight: bold">Leave Reveiew</h4>
+        <fieldset class="starability-heart">
+          <legend>Rating</legend>
+          <input
+            type="radio"
+            id="no-rate"
+            class="input-no-rate"
+            name="review[rating]"
+            value="1"
+            checked
+            aria-label="No rating."
+          />
+          <input
+            type="radio"
+            id="first-rate1"
+            name="review[rating]"
+            value="1"
+          />
+          <label for="first-rate1" title="Terrible">1 star</label>
+          <input
+            type="radio"
+            id="first-rate2"
+            name="review[rating]"
+            value="2"
+          />
+          <label for="first-rate2" title="Not good">2 stars</label>
+          <input
+            type="radio"
+            id="first-rate3"
+            name="review[rating]"
+            value="3"
+          />
+          <label for="first-rate3" title="Average">3 stars</label>
+          <input
+            type="radio"
+            id="first-rate4"
+            name="review[rating]"
+            value="4"
+          />
+          <label for="first-rate4" title="Very good">4 stars</label>
+          <input
+            type="radio"
+            id="first-rate5"
+            name="review[rating]"
+            value="5"
+          />
+          <label for="first-rate5" title="Amazing">5 stars</label>
+        </fieldset>
+        <label for="review-comment"><b>Comment</b></label> <br />
+        <textarea name="review[comment]" id="review-comment"></textarea> <br />
+        <button type="button submit" class="btn btn-dark">Submit</button>
+      </form>
+    </div>
+
+    <% } %> <% if(listing.reviews.length> 0) { %>
+    <div
+      style="
+        width: 55%;
+        border: 2px solid lightgrey;
+        padding: 5px 10px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+      "
+      class="review-container"
+    >
+      <h4 style="font-weight: bold">All Reviews</h4>
+      <div class="reviews" style="margin-top: 10px">
+        <% for(review of listing.reviews) { %>
+        <div
+          class="review-card"
+          style="border: 1px solid lightgrey; padding: 3px"
+        >
+          <div>
+            <h5 style="margin: 0"><%=review.author.username%></h5>
+            <p class="starability-result" data-rating="<%=review.rating%>"></p>
+          </div>
+          <p><b>Comment</b> : <%=review.comment%></p>
+          <!-- <form
+                method="post"
+                action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=Delete"
+              >
+                <button type="button submit" class="btn btn-dark">
+                Delete
+                 </button>
+              </form> -->
+        </div>
+
+        <% } %>
+      </div>
     </div>
     <% } %>
   </div>
+  <br /><br />
+
+  <script src="https://cdn.maptiler.com/client-js/v2.0.0/maptiler-client.umd.min.js"></script>
+  <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.umd.min.js"></script>
+  <script src="https://cdn.maptiler.com/maptiler-geocoding-control/v2.1.4/maptilersdk.umd.js"></script>
+
+  <script>
+    // Displaying Map Functionality
+    // let coordinates = "<%=listing.geometry.coordinates%>";
+    // let coordinatesArr = coordinates.split(",");
+    // let maptiler_api_key = "<%=process.env.MAPTILER_SDK_API_KEY%>";
+    // console.log(coordinates);
+
+    // maptilersdk.config.apiKey = maptiler_api_key;
+
+    // const map = new maptilersdk.Map({
+    //   container: "map",
+    //   style: "streets-v2",
+    //   center: coordinatesArr,
+    //   zoom: 9,
+    // });
+
+    // const marker = new maptilersdk.Marker().setLngLat(coordinatesArr).addTo(map);
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@maptiler/geocoding-control@2.1.6/maplibregl.min.js"></script>
+  <script>
+    maptilersdk.config.apiKey = "<%=process.env.MAPTILER_SDK_API_KEY%>";
+    console.log("<%=process.env.MAPTILER_SDK_API_KEY%>");
+
+    let coordinates = "<%=listing.geometry.coordinates%>";
+    let coordinatesArr = coordinates.split(",");
+    console.log(coordinatesArr);
+
+    const map = new maptilersdk.Map({
+      container: "map", // id of HTML container element
+      style: maptilersdk.MapStyle.STREETS,
+      center: coordinatesArr,
+      zoom: 7,
+    });
+
+    const gc = new maptilersdkMaptilerGeocoder.GeocodingControl();
+    const marker = new maptilersdk.Marker()
+      .setLngLat(coordinatesArr)
+      .addTo(map);
+
+    map.addControl(gc, "top-left");
+    const urlParams = new URLSearchParams(window.location.search);
+    console.log(urlParams);
+
+    // Accessing Elements
+    let slideImg = document.querySelector(".slider-images");
+    let prevBtn = document.querySelector(".prev-btn");
+    let nextBtn = document.querySelector(".next-btn");
+    let imgIdx = 0;
+
+    // next Button Functionality
+    nextBtn.addEventListener("click", () => {
+      if (imgIdx == slideImg.children.length - 1) {
+        imgIdx = 0;
+        slideImg.style.transform = "translate(0)";
+      } else {
+        imgIdx++;
+        slideImg.style.transform = `translate(-${imgIdx * 100}%)`;
+      }
+      console.log(imgIdx);
+    });
+
+    // Previous Button Functionality
+    prevBtn.addEventListener("click", () => {
+      if (imgIdx == 0) {
+        imgIdx += 3;
+        slideImg.style.transform = "translate(-300%)";
+      } else {
+        imgIdx--;
+        slideImg.style.transform = `translate(-${imgIdx * 100}%)`;
+      }
+      console.log(imgIdx);
+    });
+
+    // Sliding Transition
+    slideImg.style.transition = "transform 0.5s ease-in-out";
+  </script>
 </div>
-<% } %>
-
-<hr />
-<br /><br />
-
-<div class="map-wrapper">
-  <div id="map"></div>
-</div>
-
-<br /><br />
-
-<script src="https://cdn.maptiler.com/client-js/v2.0.0/maptiler-client.umd.min.js"></script>
-<script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.umd.min.js"></script>
-
-<script>
-      // Displaying Map Functionality
-  let coordinates = "<%=listing.geometry.coordinates%>";
-  let coordinatesArr = coordinates.split(",");
-  let maptiler_api_key = "<%=process.env.MAPTILER_SDK_API_KEY%>";
-  console.log(coordinates);
-
-  maptilersdk.config.apiKey = maptiler_api_key;
-
-  const map = new maptilersdk.Map({
-    container: "map",
-    style: "streets-v2",
-    center: coordinatesArr,
-    zoom: 9,
-  });
-
-  const marker = new maptilersdk.Marker().setLngLat(coordinatesArr).addTo(map);
-</script>

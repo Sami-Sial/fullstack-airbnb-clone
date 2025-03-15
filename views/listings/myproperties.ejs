@@ -1,0 +1,65 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<link rel="stylesheet" href="/css/myproperties.css" />
+
+<% if(myProperties.length <= 0) { %>
+<div
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: calc(100vh - 7rem);
+  "
+>
+  <h3>You have not created any listings.</h3>
+  <button type="button" class="btn btn-dark">
+    <a style="color: white" href="/listing/new">Create Listing</a>
+  </button>
+</div>
+
+<% } %> <%if(myProperties.length>=1) { %>
+<h4 style="font-weight: bold; padding: 1rem 0">My Properties</h4>
+<div id="cards-container" style="display: flex">
+  <% for(listing of myProperties){ %>
+  <div class="card">
+    <a href="/listings/<%=listing._id%>" class="listing-link">
+      <div class="card-img">
+        <img
+          src="<%=listing.images[0].url%>"
+          alt=""
+          class="listing-details-img"
+        />
+      </div>
+    </a>
+    <div class="card-info">
+      <p class="card-title"><%=listing.title%></p>
+      <p style="font-size: 16px">
+        <%=listing.price.toLocaleString("en-IN")%> / night<span
+          class="tax-info"
+        >
+          +18% GST</span
+        >
+      </p>
+    </div>
+    <div
+      style="display: flex; justify-content: space-between; margin: 10px 0 0 0"
+    >
+      <a style="width: 45%" href="/listings/<%=listing._id%>/edit" id="edit-btn"
+        ><button type="button" class="btn btn-dark">Edit Listing</button></a
+      >
+
+      <form
+        style="width: 45%"
+        method="post"
+        action="/listings/<%=listing._id%>?_method=DELETE"
+      >
+        <button type="button submit" class="btn btn-dark">
+          Delete Listing
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <% } %> <% } %>
+</div>

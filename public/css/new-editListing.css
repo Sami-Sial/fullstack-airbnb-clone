@@ -2,69 +2,88 @@
 .listing-form-container {
     display: flex;
     justify-content: center;
-    padding-top: 5px;
+    padding: 1rem 0 2rem;
  }
  
  form {
      display: flex;
-     flex-direction: column;
-     gap: 10px;
+     gap: 2rem;
  }
  
- label {
-     font-size: 17px;
+#left, #right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#left {
+    min-width: 35vw;
+}
+
+ .input-group {
+    display: flex;
+    flex-direction: column;
  }
- 
- .input-group .group {
-     display: inline-block;
-     margin-right: 10px;
-     width: 250px;
- }
+
  
  input {
-     padding-left: 5px;
+     padding: 5px 10px;
+     font-size: 16px;
+     border: 2px solid lightgrey;
+     border-radius: 10px;
      font-size: 16px;
  }
- 
- .title, .location {
-     width: 500px;
-     height: 35px;
-     border-radius: 5px;
-     border: 2px solid lightgray;
- }
- 
- .image {
-     width: 500px;
-     padding: 0;
-     border-radius: 5px;
-     border: 2px solid lightgray;
- }
- 
- .price, .country {
-     width: 95%;
-     height: 30px;
-     border-radius: 5px;
-     border: 2px solid lightgray;
+
+i {
+    cursor: pointer;
+}
+
+.box {
+    border: 2px solid lightgrey;
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: flex;
+    min-width: 300px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 1rem;
+}
+
+.box span {
+    font-size: 13px;
+}
+
+ .box input {
+     width: 100px;
+     border-radius: 10px;
+     padding: 0 10px;
  }
  
  .description {
-     width: 500px;
-     height: 70px;
+     height: 90px;
+     overflow-y: auto;
      border-radius: 5px;
      border: 2px solid lightgray;
      padding: 5px;
      font-size: 16px;
  }
- 
- .btn button {
-     padding: 10px;
-     border-radius: 5px;
-     background-color: red;
-     color: white;
-     border: none;
-     cursor: pointer;
-     margin-top: 10px;
+
+ #searchedAddresses {
+    display: flex;
+        flex-direction: column;
+        padding: 5px 10px;
+        gap: 5px;
+        border: none;
+        margin-top: 10px;
  }
+
+ #searchedAddresses div {
+    border-bottom: 1px solid lightgrey;
+    cursor: pointer;
+ }
+ 
+ 
 
 
  /* Media Queries */

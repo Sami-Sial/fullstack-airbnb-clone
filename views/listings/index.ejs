@@ -2,51 +2,90 @@
 
 <link rel="stylesheet" href="/css/index.css" />
 
-<div id="filters-menu">
-  <i class="fa-solid fa-bars"></i>
-  <big>Filters</big>
-</div>
-
-<div id="filters">
-  <div class="filter">
-    <i class="fa-solid fa-mountain-city"></i>
-    <p>Iconic Cities</p>
-  </div>
-  <div class="filter">
-    <i class="fa-solid fa-mountain"></i>
-    <p>Mountains</p>
-  </div>
-  <div class="filter">
-    <i class="fa-solid fa-person-swimming"></i>
-    <p>Amazing Pools</p>
-  </div>
-  <div class="filter">
-    <i class="fa-solid fa-cow"></i>
-    <p>Farms</p>
+<div style="display: flex; justify-content: space-between">
+  <div id="filters">
+    <div class="filter">
+      <i class="fa-solid fa-mountain-city"></i>
+      <p>Cabins</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-mountain"></i>
+      <p>Mountains View</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-person-swimming"></i>
+      <p>Amazing Pools</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-cow"></i>
+      <p>Farms</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-umbrella-beach"></i>
+      <p>Beachfront</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-landmark-dome"></i>
+      <p>Historical Homes</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-umbrella-beach"></i>
+      <p>Islands</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-tree-city"></i>
+      <p>Top Cities</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-fire"></i>
+      <p>Trending</p>
+    </div>
   </div>
 
   <div id="tax-switch">
-    <p>Display total after taxes</p>
+    <p style="font-weight: bold">Tax</p>
     <div id="switch">
       <div id="circle"></div>
     </div>
   </div>
 </div>
 
-<h1>All Listings</h1>
+<h3 style="font-weight: bold">All Listings</h3>
+
+<%if(allListings.length<=0) { %>
+<div
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3rem;
+  "
+>
+  <h4>No Listings Found for this category</h4>
+</div>
+<% } %>
+
 <div id="cards-container">
   <% for(listing of allListings){ %>
   <div class="card">
     <a href="/listings/<%=listing._id%>" class="listing-link">
       <div class="card-img">
-        <img src="<%=listing.image.url%>" alt="" />
+        <img
+          src="<%=listing.images[0].url%>"
+          alt=""
+          class="listing-details-img"
+        />
       </div>
     </a>
     <div class="card-info">
-      <p class="card-title"><%=listing.title%></p>
-      <p>
-        <%=listing.price.toLocaleString("en-IN")%> / night<i class="tax-info">
-          +18% GST</i
+      <p style="font-weight: bold; font-size: 14px" class="card-title">
+        <%=listing.title%>
+      </p>
+      <p style="font-weight: bold; font-size: 13px">
+        $<%=listing.price.toLocaleString("en-IN")%> / night<ispan
+          class="tax-info"
+        >
+          +18% GST</ispan
         >
       </p>
     </div>

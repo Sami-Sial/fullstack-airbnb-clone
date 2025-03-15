@@ -2,126 +2,69 @@
 #listing-details-container {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     padding-top: 1rem;
 }
 
 #listing-details {
-   width: 500px;
+   display: flex;
+   flex-direction: column;
+   width: 70vw;
 }
 
-#listing-details h2 {
-    margin-bottom: 3px;
+
+.slider-container {
+    height: 350px;
+    overflow-x: hidden;
+    position: relative;
 }
 
-.listing-details-img {
+.slider-images {
+    display: flex;
+}
+
+img {
     width: 100%;
-    height: 250px;
-    border-radius: 5px;
-} 
-
-.listing-details-card-info p {
-     margin-bottom: 3px;
+    height: 350px;
+    flex-shrink: 0;
+    border-radius: 15px;
 }
 
-.listing-details-card-info .listing-owner {
-    font-weight: bold;
-    margin-bottom: 7px;
-}
-
-.btns {
-    display: inline-block;
-}
-
-.btns form {
-    display: inline;
-}
-
-.btns form button {
-    padding: 7px 12px;
-    border-radius: 5px;
-    background-color: black;
-    color: white;
-    border: none;
+.prev-btn,
+.next-btn {
+    position: absolute;
+    top: 160px;
+    z-index: 10;
+    font-size: 40px;
     cursor: pointer;
-}
-
-.btns a button {
-    padding: 7px 12px;
-    border-radius: 5px;
-    background-color: red;
     color: white;
-    border: none;
-    cursor: pointer;
 }
 
-/* Review Form */
-.review-form {
-    display: flex;
-    justify-content: center;
-    padding: 2rem 0;
-    align-items: center;
+.prev-btn {
+    left: 50px;
 }
 
-#review-comment {
+.next-btn {
+    right: 50px;
+}
+
+input {
+    width: 100%;
     padding: 10px;
-    height: 100px;
-    width: 500px;
-    font-size: 16spx;
-}
-
-#review-btn {
-    width: fit-content;
-    margin-top: 10px;
-    padding: 7px 12px;
-    border-radius: 5px;
-    background-color: red;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.review-form h2 {
-    margin-bottom: 2rem;
-}
-
-
-/* Listing Reviews */
-.review-container{
-   padding: 10px 30px;
-}
-
-.reviews {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.review-card{
-    width: 40%;
     border-radius: 10px;
-    border: 1px solid lightgray;
-    padding: 15px 10px;
-    margin-bottom: 20px;
+    border: 2px solid lightgray;
 }
 
-.starability-result {
-    margin-bottom: 13px;
+textarea {
+    width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 2px solid black;
+        height: 80px;
+        overflow-y: auto;
 }
 
-.review-card h5 {
-    margin-bottom: 5px;
-}
-
-#delete-review-btn {
-    width: fit-content;
-    margin-top: 20px;
-    padding: 7px 12px;
-    border-radius: 5px;
-    background-color: black;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
 
 /* Map */
 .map-wrapper {
@@ -131,7 +74,7 @@
 
 #map {
     height: 50vh;
-    width: 50vw;
+    width: 70vw;
     border: 2px solid gray;
 }
 

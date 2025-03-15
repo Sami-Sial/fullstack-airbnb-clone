@@ -1,0 +1,59 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<link rel="stylesheet" href="/css/myproperties.css" />
+
+<% if(myReservations.length <= 0) { %>
+<div
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: calc(100vh - 7rem);
+  "
+>
+  <h3>You have not created any listings.</h3>
+  <button type="button" class="btn btn-dark">
+    <a style="color: white" href="/listings">All Listings</a>
+  </button>
+</div>
+
+<% } %> <%if(myReservations.length>=1) { %>
+<h4 style="font-weight: bold; padding: 1rem 0">My Reservations</h4>
+<div id="cards-container" style="display: flex">
+  <% for(reservation of myReservations){ %>
+  <div class="card">
+    <a href="/listings/<%=reservation.listing._id%>" class="listing-link">
+      <div class="card-img">
+        <img
+          src="<%=reservation.listing.images[0].url%>"
+          alt=""
+          class="listing-details-img"
+        />
+      </div>
+    </a>
+    <div class="card-info">
+      <p class="card-title"><%=reservation.listing.title%></p>
+      <p style="font-size: 16px">
+        <%=reservation.listing.price.toLocaleString("en-IN")%> / night<span
+          class="tax-info"
+        >
+          +18% GST</span
+        >
+      </p>
+    </div>
+
+    <div style="font-size: 13px; font-weight: bold; margin-bottom: 5px">
+      <%=reservation.reservationDateRange.from%> - to -
+      <%=reservation.reservationDateRange.to%>
+    </div>
+
+    <p
+      style="font-size: 13px; font-weight: bold; text-align: center; color: red"
+    >
+      Status: <%=reservation.status%>
+    </p>
+  </div>
+
+  <% } %> <% } %>
+</div>

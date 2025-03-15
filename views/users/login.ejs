@@ -4,18 +4,62 @@
 
 <div id="login-form-container">
   <form method="post" action="/login" id="login-form">
-    <h2>Login on Wanderlust</h2>
+    <h3 style="text-align: center; font-weight: bold">Login on Wanderlust</h3>
 
     <div class="input-group">
-      <label for="username">Username</label> <br />
-      <input type="text" name="username" id="username" required />
+      <label for="email">Email</label>
+      <input type="email" name="username" id="email" required />
     </div>
 
-    <div class="input-group">
-      <label for="username">Password</label> <br />
+    <div class="input-group" style="position: relative">
+      <label for="password">Password</label>
       <input type="password" name="password" id="password" required />
+      <i
+        style="position: absolute; right: 10px; top: 32px"
+        id="eye"
+        class="fa-solid fa-eye"
+      ></i>
     </div>
 
-    <button id="login-btn">Login</button>
+    <button style="color: white" type="button submit" class="btn btn-primary">
+      Login
+    </button>
+
+    <div class="input-group" style="margin-top: 10px">
+      <button type="button" class="btn btn-dark">
+        <a href="/auth/google" style="color: white">Continue with Google</a>
+      </button>
+    </div>
+
+    <div class="input-group">
+      <button type="button" class="btn btn-dark">
+        <a href="/auth/github" style="color: white">Continue with Github</a>
+      </button>
+    </div>
+
+    <p>
+      Don't have an account?
+      <a href="/signup" style="font-size: 20px">Signup</a>
+    </p>
   </form>
 </div>
+
+<script>
+  let input = document.querySelector("#password");
+  let eyeIcon = document.querySelector("#eye");
+  let passType = true;
+
+  eyeIcon.addEventListener("click", () => {
+    if (passType) {
+      input.type = "text";
+      eyeIcon.classList.remove("fa-eye");
+      eyeIcon.classList.add("fa-eye-slash");
+      passType = false;
+    } else {
+      input.type = "password";
+      eyeIcon.classList.add("fa-eye");
+      eyeIcon.classList.remove("fa-eye-slash");
+      passType = true;
+    }
+  });
+</script>

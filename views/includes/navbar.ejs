@@ -1,24 +1,94 @@
 <div id="navbar">
-    <div id="navbar-left-nav">
-        <a href="/listings" class="nav-link"><i class="fa-regular fa-compass"></i></a>
-        <a href="/listings" class="nav-link">Explore</a>
+  <div id="navbar-left-nav">
+    <a href="/listings" class="nav-link"
+      ><i class="fa-regular fa-compass"></i
+    ></a>
+    <a
+      style="font-size: 30px; font-weight: bold"
+      href="/listings"
+      class="nav-link"
+      >Airbnb</a
+    >
+  </div>
+  <div id="navbar-middle">
+    <input id="search-input" type="text" placeholder="Category and address" />
+    <button id="search-btn" type="button" class="btn btn-dark btn-sm">
+      Search
+    </button>
+  </div>
+  <div id="navbar-right-nav" style="display: flex; align-items: center">
+    <div id="nav-right">
+      <a href="/listing/new" class="nav-link"
+        ><button type="button" class="btn btn-dark btn-sm">
+          Add Listing
+        </button></a
+      >
+      <% if(!currUser){ %>
+      <!-- <b><a href="/signup" class="nav-link" id="signup-btn">SignUp</a></b> -->
+      <b
+        ><a href="/login"
+          ><button type="button" class="btn btn-dark btn-sm">Login</button></a
+        ></b
+      >
+      <% } %>
     </div>
-    <div id="navbar-middle">
-        <input id="search-input" type="text">
-        <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <% if(!currUser){ %>
+    <div id="nav-menu">
+      <div class="btn-group">
+        <button
+          class="btn btn-secondary btn-sm dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Menu
+        </button>
+        <ul class="dropdown-menu" style="padding: 5px 10px">
+          <a href="/listings" style="display: block"> All Listings </a>
+          <a href="/listing/new"> Add Listing </a>
+
+          <!-- <b><a href="/signup" class="nav-link" id="signup-btn">SignUp</a></b> -->
+          <a href="/login" style="display: block"> Login </a>
+          <a href="/signup"> Signup </a>
+        </ul>
+      </div>
     </div>
-    <div id="navbar-right-nav">
-        <a href="/listings/new" class="nav-link">Add New Listing</a>
-        <% if(!currUser){ %>
-           <b><a href="/signup" class="nav-link" id="signup-btn">SignUp</a></b>
-           <b><a href="/login" class="nav-link" id="login-btn">Login</a></b>
-        <% } %>
-        <% if(currUser){ %>
-            <b><a href="/logout" class="nav-link">Logout</a></b>
-        <% } %>
+    <% } %> <% if(currUser){ %>
+    <div class="btn-group">
+      <button
+        class="btn btn-dark btn-sm dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Profile
+      </button>
+      <ul style="width: 200px; padding: 5px 10px" class="dropdown-menu">
+        <a href="/listings" class="nav-link">All Listings</a>
+        <!-- <a href="/favourites" class="nav-link">Favourites</a> -->
+        <a href="/trips/me" class="nav-link">My Trips</a>
+        <a href="/listings/reserved/me" class="nav-link">Reserved Listings</a>
+        <a href="/listings/me" class="nav-link">My Properties</a>
+        <a href="/listing/new" class="nav-link">Create Listing</a>
+        <a href="/logout" class="nav-link">Logout</a>
+      </ul>
     </div>
-    <div id="user-menu">
-        <i class="fa-solid fa-bars"></i>
-        <i fa-solid fa-user></i>menu
-    </div>
+    <% } %>
+  </div>
 </div>
+
+<script>
+  const searchInput = document.querySelector("#search-input");
+  const searchBtn = document.querySelector("#search-btn");
+
+  searchInput.addEventListener("input", (e) => {
+    searchInput.value = e.target.value;
+    console.log(searchInput.value);
+  });
+
+  searchBtn.addEventListener("click", async (e) => {
+    location.assign(`/listings?search_query=${searchInput.value}`);
+
+    await fetch(`/listings/${searchInput.value}`);
+  });
+</script>

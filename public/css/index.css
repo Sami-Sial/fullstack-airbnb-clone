@@ -1,14 +1,14 @@
 /* Filters panel */
-#filters-menu {
-    display: none;
-    height: 3rem;
-    
-}
+
 #filters {
     display: flex;
     gap: 20px;
-    height: 4rem;
     align-items: center;
+    margin: 1rem 0;
+    width: 85%;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-gutter: stable;
 }
 
 .filter {
@@ -18,7 +18,7 @@
 }
 
 .filter p {
-    font-size: 0.9rem;
+    font-size: 16px;
 }
 
 .filter:hover {
@@ -51,7 +51,7 @@
 }
 
 #switch.active-switch{
-   background-color: blue;
+   background-color: black;
 }
 
 #circle.active{
@@ -68,9 +68,7 @@
 }
 
 /* ALL LISTINGS CARDS */
-h1{
-    padding: 0.5rem 0;
-}
+
 
 #cards-container {
     display: flex;
@@ -78,9 +76,14 @@ h1{
     flex-wrap: wrap;
 }
 
+
+
 .card {
     width: 23%;
     margin-bottom: 2rem;
+    border: 2px solid lightgrey;
+    border-radius: 10px;
+    padding: 5px;
 } 
 
 .card-img img {
@@ -121,23 +124,17 @@ h1{
     flex-direction: column;
     gap: 1px;
     font-size: 0.9rem;
+    margin-top: 1rem;
    }
    .filter p {
     font-size: 0.7rem;
    }
+
 }
 
 @media screen  and (max-width:575px){
     .card-img img {
         height: 200px;
-    }
-    #filters {
-        display: none;
-    }
-    #filters-menu {
-        display: flex;
-        align-items: center;
-        gap: 10px;
     }
 }
 
@@ -154,8 +151,8 @@ h1{
     }
 }
 
-@media screen  and (max-width:400px){
-    h1 {
+@media screen  and (max-width:500px){
+    h3 {
         text-align: center;
     }
     .card {
