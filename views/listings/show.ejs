@@ -28,8 +28,8 @@
       </div>
     </div>
 
-    <div style="display: flex; justify-content: space-between; padding: 2rem 0">
-      <div style="width: 40%">
+    <div id="property-info">
+      <div id="info-left">
         <div style="display: flex; flex-direction: column; gap: 15px">
           <div>
             <p style="font-weight: bold" class="listing-owner">
@@ -63,6 +63,7 @@
       </div>
 
       <form
+        id="info-right"
         method="post"
         action="/listing/<%=listing._id%>/reserve"
         style="width: 40%"
@@ -85,12 +86,20 @@
             name="from"
             placeholder="From"
             id="from"
+            style="color: black"
             required
           />
         </div>
         <div style="margin-bottom: 1rem">
           <label for="to"></label>
-          <input type="date" name="to" placeholder="From" id="to" required />
+          <input
+            style="color: black"
+            type="date"
+            name="to"
+            placeholder="From"
+            id="to"
+            required
+          />
         </div>
         <button type="button submit" class="btn btn-dark w-100">Reserve</button>
         <% } %>

@@ -30,14 +30,6 @@ form {
   width: 100%;
 }
 
-input {
-  padding: 5px 10px;
-  font-size: 16px;
-  border: 2px solid lightgrey;
-  border-radius: 10px;
-  font-size: 16px;
-}
-
 i {
   cursor: pointer;
 }
@@ -87,6 +79,13 @@ i {
   cursor: pointer;
 }
 
+input {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 2px solid lightgrey;
+  font-size: 16px;
+}
+
 /* Media Queries */
 @media screen and (max-width: 1000px) {
   #left {
@@ -112,13 +111,24 @@ i {
 
 @media screen and (max-width: 450px) {
   .input-group input {
-    width: 90vw;
+    width: 93vw;
   }
   .input-group textarea {
-    width: 90vw;
+    width: 93vw;
   }
 
   .input-group select {
-    width: 90vw;
+    width: 93vw;
+  }
+  .box input {
+    width: 70px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .value-input {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
   }
 }
