@@ -80,23 +80,23 @@
         <% } %> <% } %> <% if(res.status == "Pending" || res.status ==
         "cancelled" || res.status=="available" || reservation.length==0) { %>
         <div>
-          <label for="from"></label>
+          <label for="from">From</label>
           <input
             type="date"
             name="from"
-            placeholder="From"
+            placeholder="YYYY-MM-DD"
             id="from"
             style="color: black"
             required
           />
         </div>
         <div style="margin-bottom: 1rem">
-          <label for="to"></label>
+          <label for="to">To</label>
           <input
             style="color: black"
             type="date"
             name="to"
-            placeholder="From"
+            placeholder="YYYY-MM-DD"
             id="to"
             required
           />

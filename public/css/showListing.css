@@ -81,7 +81,7 @@ textarea {
   width: 70vw;
 }
 .review-form {
-  /* width: 40%; */
+  width: 40%;
   border: 2px solid lightgrey;
   padding: 5px 10px;
   flex-grow: 0.9;
