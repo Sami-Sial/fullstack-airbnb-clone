@@ -42,21 +42,13 @@
         >
       </p>
     </div>
-    <div
-      style="display: flex; justify-content: space-between; margin: 10px 0 0 0"
-    >
-      <a style="width: 45%" href="/listings/<%=listing._id%>/edit" id="edit-btn"
-        ><button type="button" class="btn btn-dark">Edit Listing</button></a
+    <div style="display: flex; gap: 15px; margin: 10px 0 0 0">
+      <a href="/listings/<%=listing._id%>/edit" id="edit-btn"
+        ><button type="button" class="btn btn-dark btn-sm">Edit</button></a
       >
 
-      <form
-        style="width: 45%"
-        method="post"
-        action="/listings/<%=listing._id%>?_method=DELETE"
-      >
-        <button type="button submit" class="btn btn-dark">
-          Delete Listing
-        </button>
+      <form method="post" action="/listings/<%=listing._id%>?_method=DELETE">
+        <button type="button submit" class="btn btn-dark btn-sm">Delete</button>
       </form>
     </div>
   </div>

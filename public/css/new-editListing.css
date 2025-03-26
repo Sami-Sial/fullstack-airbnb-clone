@@ -1,100 +1,124 @@
 /* NEW LISTING FORM  & EDIT LISTING FORM*/
 .listing-form-container {
-    display: flex;
-    justify-content: center;
-    padding: 1rem 0 2rem;
- }
- 
- form {
-     display: flex;
-     gap: 2rem;
- }
- 
-#left, #right {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0 2rem;
+}
+
+form {
+  display: flex;
+  gap: 2rem;
+}
+
+#left,
+#right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 #left {
-    min-width: 35vw;
+  min-width: 35vw;
 }
 
- .input-group {
-    display: flex;
-    flex-direction: column;
- }
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
 
- 
- input {
-     padding: 5px 10px;
-     font-size: 16px;
-     border: 2px solid lightgrey;
-     border-radius: 10px;
-     font-size: 16px;
- }
+.input-group input {
+  width: 100%;
+}
+
+input {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 2px solid lightgrey;
+  border-radius: 10px;
+  font-size: 16px;
+}
 
 i {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .box {
-    border: 2px solid lightgrey;
-    border-radius: 10px;
-    padding: 5px 10px;
-    display: flex;
-    min-width: 300px;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-    gap: 1rem;
+  border: 2px solid lightgrey;
+  border-radius: 10px;
+  padding: 5px 10px;
+  display: flex;
+  min-width: 300px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 1rem;
 }
 
 .box span {
-    font-size: 13px;
+  font-size: 13px;
 }
 
- .box input {
-     width: 100px;
-     border-radius: 10px;
-     padding: 0 10px;
- }
- 
- .description {
-     height: 90px;
-     overflow-y: auto;
-     border-radius: 5px;
-     border: 2px solid lightgray;
-     padding: 5px;
-     font-size: 16px;
- }
+.box input {
+  width: 100px;
+  border-radius: 10px;
+  padding: 0 10px;
+}
 
- #searchedAddresses {
-    display: flex;
-        flex-direction: column;
-        padding: 5px 10px;
-        gap: 5px;
-        border: none;
-        margin-top: 10px;
- }
+.description {
+  height: 90px;
+  overflow-y: auto;
+  border-radius: 5px;
+  border: 2px solid lightgray;
+  padding: 5px;
+  font-size: 16px;
+}
 
- #searchedAddresses div {
-    border-bottom: 1px solid lightgrey;
-    cursor: pointer;
- }
- 
- 
+#searchedAddresses {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px;
+  gap: 5px;
+  border: none;
+  margin-top: 10px;
+}
 
+#searchedAddresses div {
+  border-bottom: 1px solid lightgrey;
+  cursor: pointer;
+}
 
- /* Media Queries */
- @media screen and (max-width:600px) {
-    .listing-form-container input {
-        width: 90vw;
-    }
-    .input-group .group {
-        width: 90vw;
-    }
-    .description {
-        width: 90vw;
-    }
- }
+/* Media Queries */
+@media screen and (max-width: 1000px) {
+  #left {
+    width: 43vw;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  form {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .input-group input {
+    width: 400px;
+  }
+  .input-group textarea {
+    width: 400px;
+  }
+  .input-group select {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .input-group input {
+    width: 90vw;
+  }
+  .input-group textarea {
+    width: 90vw;
+  }
+
+  .input-group select {
+    width: 90vw;
+  }
+}

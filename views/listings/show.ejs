@@ -57,8 +57,7 @@
           </div>
 
           <p>
-            <%=listing.description%>lorem ipsu kdsf nksidl kareh asfh sakhfiu
-            eihryqhi
+            <span style="font-weight: bold">Address:</span> <%=listing.address%>
           </p>
         </div>
       </div>
@@ -68,7 +67,7 @@
         action="/listing/<%=listing._id%>/reserve"
         style="width: 40%"
       >
-        <h5 style="margin: 0">
+        <h5 style="margin-bottom: 1rem">
           $<%=listing.price.toLocaleString("en-IN")%> / night
         </h5>
 
@@ -77,11 +76,8 @@
           Already reserved from <%=res.reservationDateRange.from%> -to-
           <%=res.reservationDateRange.to%>
         </p>
-        <% } %> <% if(res.status == "pending" || res.status == "cancelled" ||
-        reservation.length<=0) { %>
-        <p>Available for Reservation</p>
-        <% } %> <% } %>
-
+        <% } %> <% } %> <% if(res.status == "Pending" || res.status ==
+        "cancelled" || res.status=="available" || reservation.length==0) { %>
         <div>
           <label for="from"></label>
           <input
@@ -97,23 +93,24 @@
           <input type="date" name="to" placeholder="From" id="to" required />
         </div>
         <button type="button submit" class="btn btn-dark w-100">Reserve</button>
+        <% } %>
       </form>
     </div>
+
+    <p><%=listing.description%></p>
   </div>
 
   <br />
 
+  <h2>Where You will be</h2>
   <div class="map-wrapper">
     <div id="map"></div>
   </div>
 
   <% if(currUser){ %>
   <br />
-  <div style="display: flex; justify-content: space-between; width: 70vw">
-    <div
-      style="width: 40%; border: 2px solid lightgrey; padding: 5px 10px"
-      class="review-form"
-    >
+  <div id="reviews-wrapper">
+    <div class="review-form">
       <form method="post" action="/listings/<%=listing._id%>/reviews">
         <h4 style="font-weight: bold">Leave Reveiew</h4>
         <fieldset class="starability-heart">
@@ -169,17 +166,22 @@
       </form>
     </div>
 
-    <% } %> <% if(listing.reviews.length> 0) { %>
+    <%if(listing.reviews.length <=0 ){ %>
+
     <div
       style="
-        width: 55%;
-        border: 2px solid lightgrey;
-        padding: 5px 10px;
-        overflow-y: auto;
-        scrollbar-width: thin;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 250px;
+        font-size: 18px;
+        font-weight: 500;
       "
-      class="review-container"
     >
+      No reviews added yet
+    </div>
+    <%}%> <% } %> <% if(listing.reviews.length> 0) { %>
+    <div class="review-container">
       <h4 style="font-weight: bold">All Reviews</h4>
       <div class="reviews" style="margin-top: 10px">
         <% for(review of listing.reviews) { %>

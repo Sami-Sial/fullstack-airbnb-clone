@@ -40,7 +40,17 @@ module.exports.showlisting = async (req, res, next) => {
   }
 
   const reservation = await Reservation.find({ listing: listing._id });
-  console.log(reservation);
+
+  if (reservation.length > 0) {
+    const endDate =
+      new Date(
+        reservation[reservation.length - 1].reservationDateRange.to +
+          "T23:59:59Z"
+      ).getTime() - new Date().getTime();
+    if (endDate <= 0) {
+      reservation.status = "avaiable";
+    }
+  }
 
   res.render("listings/show.ejs", { listing, reservation });
 };
@@ -154,15 +164,28 @@ module.exports.destroyListing = async (req, res, next) => {
   res.redirect("/listings");
 };
 
+module.exports.renderReservedListings = async (req, res, next) => {
+  const reservations = await Reservation.find().populate("listing");
+  const reservedListings = reservations.filter(
+    (reservation) => reservation.listing.owner == req.user._id
+  );
+
+  res.render("listings/reservedListings.ejs", { reservedListings });
+};
+
 module.exports.reserveListing = async (req, res, next) => {
   const listing = await Listing.findById(req.params.id);
 
   // let reservations = await Reservation.find({ listing: listing._id });
   // if (reservations.length >= 1) {
-  //   const confirmedReservations = reservations.filter((r) => r.status == "confirmed");
+  //   const confirmedReservations = reservations.filter(
+  //     (r) => r.status == "confirmed"
+  //   );
   //   if (confirmedReservations) {
-  //     let lastReservationDate = confirmedReservations[confirmedReservations.length - 1]
-  //       .reservationDateRange.to;
+  //     let lastReservationDate =
+  //       confirmedReservations[confirmedReservations.length - 1]
+  //         .reservationDateRange.to;
+  //     console.log(lastReservationDate);
   //   }
   // }
 
@@ -178,16 +201,7 @@ module.exports.reserveListing = async (req, res, next) => {
   const reservedListing = await details.save();
   console.log(reservedListing);
 
-  res.redirect("/reservations");
-};
-
-module.exports.renderReservedListings = async (req, res, next) => {
-  const reservations = await Reservation.find().populate("listing");
-  const reservedListings = reservations.filter(
-    (reservation) => reservation.listing.owner == req.user._id
-  );
-
-  res.render("listings/reservedListings.ejs", { reservedListings });
+  res.redirect("/listings/reserved/me");
 };
 
 module.exports.DeleteReservedListing = async (req, res) => {
@@ -213,5 +227,5 @@ module.exports.confirmReservedListing = async (req, res) => {
   );
 
   req.flash("success", "Reservation confirmed");
-  res.redirect("/listings/reserved");
+  res.redirect("/listings/reserved/me");
 };

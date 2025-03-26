@@ -12,9 +12,9 @@
     height: calc(100vh - 7rem);
   "
 >
-  <h3>You have not created any listings.</h3>
+  <h3>None of your listings is reserved</h3>
   <button type="button" class="btn btn-dark">
-    <a style="color: white" href="/listings">All Listings</a>
+    <a style="color: white" href="/listings/me">Your Listings</a>
   </button>
 </div>
 
@@ -48,7 +48,7 @@
       <%=reservation.reservationDateRange.to%>
     </div>
 
-    <% if(reservation.status == "pending") { %>
+    <% if(reservation.status == "Pending") { %>
     <div style="display: flex; gap: 10px">
       <a style="width: 45%" href="/listing/<%=reservation._id%>/reserved/cancel"
         ><button
