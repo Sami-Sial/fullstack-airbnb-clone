@@ -50,6 +50,7 @@ module.exports.showlisting = async (req, res, next) => {
     if (endDate <= 0) {
       reservation.status = "avaiable";
     }
+    reservation = reservation[reservation.length - 1];
   }
 
   res.render("listings/show.ejs", { listing, reservation });
