@@ -78,8 +78,7 @@
           <%=reservation?.reservationDateRange.to%>
         </p>
         <% } %> <% if(reservation?.status == "Pending" || reservation?.status ==
-        "cancelled" || reservation?.status=="available" ||
-        reservation?.length==0) { %>
+        "cancelled" || reservation?.status=="available" || !reservation) { %>
         <div>
           <label for="from">From</label>
           <input
