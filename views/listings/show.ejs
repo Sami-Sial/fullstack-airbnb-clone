@@ -72,13 +72,14 @@
           $<%=listing.price.toLocaleString("en-IN")%> / night
         </h5>
 
-        <% for(res of reservation) { %> <%if(res.status == "confirmed") { %>
+        <%if(reservation?.status == "confirmed") { %>
         <p style="font-weight: bold; margin-top: 1rem; color: green">
-          Already reserved from <%=res.reservationDateRange.from%> -to-
-          <%=res.reservationDateRange.to%>
+          Already reserved from <%=reservation?.reservationDateRange.from%> -to-
+          <%=reservation?.reservationDateRange.to%>
         </p>
-        <% } %> <% } %> <% if(res.status == "Pending" || res.status ==
-        "cancelled" || res.status=="available" || reservation.length==0) { %>
+        <% } %> <% if(reservation?.status == "Pending" || reservation?.status ==
+        "cancelled" || reservation?.status=="available" ||
+        reservation?.length==0) { %>
         <div>
           <label for="from">From</label>
           <input
