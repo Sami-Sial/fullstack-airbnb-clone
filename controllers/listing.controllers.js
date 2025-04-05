@@ -40,7 +40,6 @@ module.exports.showlisting = async (req, res, next) => {
   }
 
   let reservation = await Reservation.find({ listing: listing._id });
-  let reservation = await Reservation.find({ listing: listing._id });
 
   if (reservation.length > 0) {
     const endDate =
