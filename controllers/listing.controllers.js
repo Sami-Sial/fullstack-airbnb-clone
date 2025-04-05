@@ -39,18 +39,21 @@ module.exports.showlisting = async (req, res, next) => {
     res.redirect("/listings");
   }
 
-  const reservation = await Reservation.findOne({ listing: listing._id });
+  let reservation = await Reservation.find({ listing: listing._id });
 
   if (reservation.length > 0) {
     const endDate =
       new Date(
-        reservation[reservation.length - 1].reservationDateRange.to +
-          "T23:59:59Z"
+        reservation[reservation.length - 1].reservationDateRange.to
       ).getTime() - new Date().getTime();
     if (endDate <= 0) {
-      reservation.status = "avaiable";
+      reservation[reservation.length - 1].status = "avaiable";
     }
+    console.log(endDate);
+
+    reservation = reservation[reservation.length - 1];
   }
+  console.log(reservation);
 
   res.render("listings/show.ejs", { listing, reservation });
 };
