@@ -72,13 +72,14 @@
           $<%=listing.price.toLocaleString("en-IN")%> / night
         </h5>
 
-        <% for(res of reservation) { %> <%if(res.status == "confirmed") { %>
+        <%if(reservation?.status == "confirmed") { %>
         <p style="font-weight: bold; margin-top: 1rem; color: green">
-          Already reserved from <%=res.reservationDateRange.from%> -to-
-          <%=res.reservationDateRange.to%>
+          Already reserved from <%=reservation?.reservationDateRange.from%> -to-
+          <%=reservation?.reservationDateRange.to%>
         </p>
-        <% } %> <% } %> <% if(res.status == "Pending" || res.status ==
-        "cancelled" || res.status=="available" || reservation.length==0) { %>
+        <% } %> <% if(reservation?.status == "Pending" || reservation?.status ==
+        "cancelled" || reservation?.status=="available" ||
+        reservation?.length==0) { %>
         <div>
           <label for="from">From</label>
           <input
@@ -224,25 +225,6 @@
   <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.umd.min.js"></script>
   <script src="https://cdn.maptiler.com/maptiler-geocoding-control/v2.1.4/maptilersdk.umd.js"></script>
 
-  <script>
-    // Displaying Map Functionality
-    // let coordinates = "<%=listing.geometry.coordinates%>";
-    // let coordinatesArr = coordinates.split(",");
-    // let maptiler_api_key = "<%=process.env.MAPTILER_SDK_API_KEY%>";
-    // console.log(coordinates);
-
-    // maptilersdk.config.apiKey = maptiler_api_key;
-
-    // const map = new maptilersdk.Map({
-    //   container: "map",
-    //   style: "streets-v2",
-    //   center: coordinatesArr,
-    //   zoom: 9,
-    // });
-
-    // const marker = new maptilersdk.Marker().setLngLat(coordinatesArr).addTo(map);
-  </script>
-
   <script src="https://cdn.jsdelivr.net/npm/@maptiler/geocoding-control@2.1.6/maplibregl.min.js"></script>
   <script>
     maptilersdk.config.apiKey = "<%=process.env.MAPTILER_SDK_API_KEY%>";
@@ -289,8 +271,8 @@
     // Previous Button Functionality
     prevBtn.addEventListener("click", () => {
       if (imgIdx == 0) {
-        imgIdx += 3;
-        slideImg.style.transform = "translate(-300%)";
+        imgIdx += slideImg.children.length - 1;
+        slideImg.style.transform = `translate(-${imgIdx * 100}%)`;
       } else {
         imgIdx--;
         slideImg.style.transform = `translate(-${imgIdx * 100}%)`;
