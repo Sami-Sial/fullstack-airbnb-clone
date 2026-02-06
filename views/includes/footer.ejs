@@ -1,8 +1,187 @@
 <footer>
-  <div id="footer-socials">
-    <a href=""><i class="fa-brands fa-square-facebook"></i></a>
-    <a href=""><i class="fa-brands fa-square-twitter"></i></a>
-    <a href=""> <i class="fa-brands fa-square-instagram"></i> </a>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>BookNest</h3>
+      <p>Discover the world's most amazing destinations with us. Your journey begins here.</p>
+    </div>
+
+    <% if(currUser){ %>
+      <!-- Show Quick Links when logged in -->
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="/listings">All Listings</a></li>
+          <li><a href="/listing/new">Add Listing</a></li>
+          <li><a href="/trips/me">My Trips</a></li>
+          <li><a href="/listings/reserved/me">Reserved Listings</a></li>
+          <li><a href="/listings/me">My Properties</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </div>
+      <% } else { %>
+        <!-- Show Account Links when NOT logged in -->
+        <div class="footer-section">
+          <h4>Get Started</h4>
+          <ul>
+            <li><a href="/listings">All Listings</a></li>
+            <li><a href="/listing/new">Add Listing</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/signup">Sign Up</a></li>
+          </ul>
+        </div>
+        <% } %>
+
+          <div class="footer-section">
+            <h4>Developer</h4>
+            <ul class="contact-info">
+              <li>
+                <i class="fa-brands fa-github"></i>
+                <a href="https://github.com/Sami-Sial" target="_blank">GitHub</a>
+              </li>
+              <li>
+                <i class="fa-brands fa-linkedin"></i>
+                <a href="https://www.linkedin.com/in/sami-ullah-b536a8338" target="_blank">LinkedIn</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-briefcase"></i>
+                <a href="https://sami-sial-portfolio.vercel.app" target="_blank">Portfolio</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-file"></i>
+                <a href="https://sami-resume.tiiny.site" target="_blank">Resume</a>
+              </li>
+            </ul>
+          </div>
   </div>
-  <p>&copy: Wanderlust Private Limited</p>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 BookNest Private Limited. All Rights Reserved.</p>
+  </div>
 </footer>
+
+<style>
+  footer {
+    background: #ffffff;
+    color: #000000;
+    padding: 60px 20px 20px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 60px;
+  }
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .footer-section h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #000000;
+    font-weight: 700;
+  }
+
+  .footer-section h4 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #000000;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 10px;
+  }
+
+  .footer-section h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background: #000000;
+    border-radius: 2px;
+  }
+
+  .footer-section p {
+    color: #000000;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-section ul li {
+    margin-bottom: 12px;
+  }
+
+  .footer-section ul li a {
+    color: #000000;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    display: inline-block;
+  }
+
+  .footer-section ul li a:hover {
+    color: #000000;
+    padding-left: 5px;
+    font-weight: 600;
+  }
+
+  .contact-info li {
+    color: #000000;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .contact-info li a {
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .contact-info li a:hover {
+    color: #000000;
+    padding-left: 0;
+    font-weight: 600;
+  }
+
+  .contact-info i {
+    color: #000000;
+    font-size: 18px;
+    width: 20px;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid #000000;
+  }
+
+  .footer-bottom p {
+    color: #000000;
+    font-size: 14px;
+    margin: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 30px;
+    }
+
+    footer {
+      padding: 40px 15px 15px;
+    }
+  }
+</style>

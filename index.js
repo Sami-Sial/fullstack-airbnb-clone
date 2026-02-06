@@ -98,6 +98,8 @@ app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something Went Wrond" } = err;
   // res.status(statusCode).send(message);
   console.log("error message", message);
+  console.log("error stack", err);
+
 
   res.render("error.ejs", { message });
 });

@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -38,6 +38,7 @@ button {
     z-index: 20;
     background-color: white;
 }
+
 #nav-menu {
     display: none;
 }
@@ -45,6 +46,7 @@ button {
 #nav-right {
     display: flex;
 }
+
 #navbar-left-nav {
     display: flex;
     align-items: center;
@@ -58,7 +60,7 @@ button {
 
 #navbar-middle #search-input {
     border-radius: 3rem;
-    border: 1px solid gray;    
+    border: 1px solid gray;
     padding: 3px 10px;
 }
 
@@ -73,11 +75,13 @@ button {
     font-size: 2rem;
 }
 
-#signup-btn, #login-btn {
+#signup-btn,
+#login-btn {
     font-size: 1rem;
 }
 
-#signup-btn:hover, #login-btn:hover {
+#signup-btn:hover,
+#login-btn:hover {
     opacity: 0.7;
 }
 
@@ -85,6 +89,63 @@ button {
     display: none;
 }
 
+/* IMPROVED DROPDOWN STYLING */
+.dropdown-menu {
+    border: 1px solid #000000 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    padding: 8px 0 !important;
+    margin-top: 8px !important;
+    min-width: 180px !important;
+}
+
+.dropdown-menu a {
+    display: block !important;
+    padding: 10px 16px !important;
+    color: #000000 !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    font-size: 14px !important;
+    border-radius: 4px !important;
+    margin: 2px 8px !important;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f5f5f5 !important;
+    color: #000000 !important;
+    font-weight: 600 !important;
+}
+
+.dropdown-menu a.nav-link {
+    margin-right: 0 !important;
+}
+
+/* Dropdown Toggle Button */
+.dropdown-toggle {
+    border-radius: 6px !important;
+    padding: 6px 12px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+}
+
+.dropdown-toggle:hover {
+    opacity: 0.9 !important;
+}
+
+.dropdown-toggle::after {
+    margin-left: 6px !important;
+}
+
+/* Profile Dropdown Specific */
+#navbar-right-nav .dropdown-menu {
+    right: 0 !important;
+    left: auto !important;
+}
+
+/* Menu Dropdown Specific */
+#nav-menu .dropdown-menu {
+    width: 200px !important;
+}
 
 /* Flash Message */
 .flash-container {
@@ -114,56 +175,24 @@ button {
     border: 1px solid gray;
 }
 
-
-/* FORM VALIDATION */
-
-
-/* FOOTER */
-footer {
-    display: flex;
-    height: 3.5rem;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: rgb(211, 211, 211, 0.5);
-    font-size: 1rem;
-}
-
-
-#footer-socials a {
-    margin-right: 10px;
-    font-size: 1.2rem;
-    color: black;
-}
-
-/* #footer-info-links a {
-    color: black;
-    text-decoration: none;
-    margin-right: 10px;
-} */
-
-#footer-info-links a:hover {
-    text-decoration: underline;
-}
-
-
 /* Media Queries */
-@media screen  and (max-width:1100px){
+@media screen and (max-width:1100px) {
     body {
         padding: 0 2rem;
     }
 }
 
-@media screen  and (max-width:950px){
+@media screen and (max-width:950px) {
     .nav-link {
         margin-right: 5px;
     }
 }
 
-@media screen  and (max-width:800px){
+@media screen and (max-width:800px) {
     #navbar-right-nav {
         display: none;
     }
+
     #user-menu {
         display: inline;
     }
@@ -171,24 +200,24 @@ footer {
 
 @media screen and (max-width:700px) {
     #nav-right {
-            display: none;
-        }
-    
-        #nav-menu {
-            display: flex;
-        }
-                 #navbar-left-nav {
-                     display: none;
-                 }
+        display: none;
+    }
+
+    #nav-menu {
+        display: flex;
+    }
+
+    #navbar-left-nav {
+        display: none;
+    }
 }
 
+@media screen and (max-width:450px) {
+    #search-input {
+        width: 40vw;
+    }
 
-@media screen  and (max-width:450px){
-   #search-input {
-     width: 40vw;
-   }
-   body {
-    padding: 0 10px;
-   }
+    body {
+        padding: 0 10px;
+    }
 }
-

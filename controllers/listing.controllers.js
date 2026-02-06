@@ -170,7 +170,7 @@ module.exports.destroyListing = async (req, res, next) => {
 module.exports.renderReservedListings = async (req, res, next) => {
   const reservations = await Reservation.find().populate("listing");
   const reservedListings = reservations.filter(
-    (reservation) => reservation.listing.owner == req.user._id
+    (reservation) => reservation.reserver == req.user._id
   );
 
   res.render("listings/reservedListings.ejs", { reservedListings });

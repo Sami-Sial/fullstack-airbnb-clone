@@ -11,30 +11,36 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(
-  new LocalStrategy(async function (username, password, done) {
-    const user = await User.findOne({ profileId: username });
+  new LocalStrategy(async (username, password, done) => {
+    try {
+      const user = await User.findOne({ email: username });
 
-    if (!user) {
-      return done(null, false);
-    }
-
-    bcrypt.compare(password, user?.password, function (err, result) {
-      if (result) {
-        return done(null, user);
-      } else {
-        return done(null, null);
+      if (!user) {
+        return done(null, false, { message: "Invalid email or password" });
       }
-    });
+
+      bcrypt.compare(password, user.password, (err, result) => {
+        if (err) return done(err);
+
+        if (!result) {
+          return done(null, false, { message: "Invalid email or password" });
+        }
+
+        return done(null, user);
+      });
+    } catch (err) {
+      return done(err);
+    }
   })
 );
+
 
 passport.use(
   new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID, // Your Credentials here.
       clientSecret: process.env.GOOGLE_CLIENT_SECRET, // Your Credentials here.
-      callbackURL:
-        "https://fullstackairbnbclone2-caejb67v.b4a.run/auth/google/callback",
+      callbackURL: `${process.env.BACKEND_BASE_URL}/auth/google/callback`,
       passReqToCallback: true,
     },
     async function (request, accessToken, refreshToken, profile, done) {
@@ -65,8 +71,7 @@ passport.use(
     {
       clientID: process.env.GITHUB_CLIENT_ID, // Your Credentials here.
       clientSecret: process.env.GITHUB_CLIENT_SECRET, // Your Credentials here.
-      callbackURL:
-        "https://fullstackairbnbclone2-caejb67v.b4a.run/auth/github/callback",
+      callbackURL: `${process.env.BACKEND_BASE_URL}/auth/github/callback`,
       passReqToCallback: true,
     },
     async function (req, accessToken, refreshToken, profile, done) {

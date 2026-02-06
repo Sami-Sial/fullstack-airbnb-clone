@@ -1,84 +1,81 @@
 <% layout("/layouts/boilerplate.ejs") %>
 
-<link rel="stylesheet" href="/css/myproperties.css" />
+  <link rel="stylesheet" href="/css/myproperties.css" />
 
-<% if(reservedListings.length <= 0) { %>
-<div
-  style="
+  <% if(reservedListings.length <=0) { %>
+    <div style="
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     height: calc(100vh - 7rem);
-  "
->
-  <h3>None of your listings is reserved</h3>
-  <button type="button" class="btn btn-dark">
-    <a style="color: white" href="/listings/me">Your Listings</a>
-  </button>
-</div>
-
-<% } %> <%if(reservedListings.length>=1) { %>
-<h4 style="font-weight: bold; padding: 1rem 0">Guests Reservations</h4>
-<div id="cards-container" style="display: flex">
-  <% for(reservation of reservedListings){ %>
-  <div class="card">
-    <a href="/listings/<%=reservation.listing._id%>" class="listing-link">
-      <div class="card-img">
-        <img
-          src="<%=reservation.listing.images[0].url%>"
-          alt=""
-          class="listing-details-img"
-        />
-      </div>
-    </a>
-    <div class="card-info">
-      <p class="card-title"><%=reservation.listing.title%></p>
-      <p style="font-size: 16px">
-        <%=reservation.listing.price.toLocaleString("en-IN")%> / night<span
-          class="tax-info"
-        >
-          +18% GST</span
-        >
-      </p>
+  ">
+      <h3>None of your listings is reserved</h3>
+      <button type="button" class="btn btn-dark">
+        <a style="color: white" href="/listings/me">Your Listings</a>
+      </button>
     </div>
 
-    <div style="font-size: 13px; margin: 0 0 10px 0; font-weight: bold">
-      <%=reservation.reservationDateRange.from%> - to -
-      <%=reservation.reservationDateRange.to%>
-    </div>
-
-    <% if(reservation.status == "Pending") { %>
-    <div style="display: flex; gap: 10px">
-      <a style="width: 45%" href="/listing/<%=reservation._id%>/reserved/cancel"
-        ><button
-          style="width: 100%"
-          type="button submit"
-          class="btn btn-danger btn-sm"
-        >
-          Cancel
-        </button></a
-      >
-
-      <a
-        style="width: 45%"
-        href="/listing/<%=reservation._id%>/reserved/confirm"
-        ><button
-          style="width: 100%"
-          type="button submit"
-          class="btn btn-danger btn-sm"
-        >
-          Confirm
-        </button></a
-      >
-    </div>
-    <% } %> <% if(reservation.status=="confirmed" ||
-    reservation.status=="cancelled") { %>
-    <p style="color: red; font-size: 13px; font-weight: bold">
-      Reservation is <%=reservation.status%>
-    </p>
     <% } %>
-  </div>
+      <%if(reservedListings.length>=1) { %>
+        <h4 style="font-weight: bold; padding: 1rem 0">Guests Reservations</h4>
+        <div id="cards-container" style="display: flex">
+          <% for(reservation of reservedListings){ %>
+            <div class="card">
+              <a href="/listings/<%=reservation.listing._id%>" class="listing-link">
+                <div class="card-img">
+                  <img src="<%=reservation.listing.images[0].url%>" alt="" class="listing-details-img" />
+                </div>
+              </a>
+              <div class="card-info">
+                <p class="card-title">
+                  <%=reservation.listing.title%>
+                </p>
+                <p style="font-size: 16px">
+                  <%=reservation.listing.price.toLocaleString("en-IN")%> / night<span class="tax-info">
+                      +18% GST</span>
+                </p>
+              </div>
 
-  <% } %> <% } %>
-</div>
+              <div style="font-size: 13px; margin: 0 0 10px 0; font-weight: bold">
+                <%=reservation.reservationDateRange.from%> - to -
+                  <%=reservation.reservationDateRange.to%>
+              </div>
+
+              <% if(reservation.status=="Pending" ) { %>
+                <div style="display: flex; gap: 10px">
+                  <form style="width: 45%" method="GET" action="/listing/<%=reservation._id%>/reserved/cancel"
+                    onsubmit="handleReservationSubmit(event, this, 'Cancelling...')">
+                    <button style="width: 100%" type="submit" class="btn btn-danger btn-sm">
+                      Cancel
+                    </button>
+                  </form>
+
+                  <form style="width: 45%" method="GET" action="/listing/<%=reservation._id%>/reserved/confirm"
+                    onsubmit="handleReservationSubmit(event, this, 'Confirming...')">
+                    <button style="width: 100%" type="submit" class="btn btn-success btn-sm">
+                      Confirm
+                    </button>
+                  </form>
+                </div>
+                <% } %>
+                  <% if(reservation.status=="confirmed" || reservation.status=="cancelled" ) { %>
+                    <p style="color: red; font-size: 13px; font-weight: bold">
+                      Reservation is <%=reservation.status%>
+                    </p>
+                    <% } %>
+            </div>
+
+            <% } %>
+              <% } %>
+        </div>
+
+        <script>
+          function handleReservationSubmit(event, form, loadingText) {
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) {
+              submitBtn.disabled = true;
+              submitBtn.textContent = loadingText;
+            }
+          }
+        </script>

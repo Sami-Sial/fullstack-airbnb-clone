@@ -1,224 +1,177 @@
 <% layout("/layouts/boilerplate.ejs") %>
 
-<link rel="stylesheet" href="/css/new-editListing.css" />
+  <link rel="stylesheet" href="/css/new-editListing.css" />
 
-<div class="listing-form-container">
-  <form
-    method="post"
-    action="/listings"
-    id="new-listing-form"
-    enctype="multipart/form-data"
-  >
-    <div id="left">
-      <h3 style="font-weight: bold">Create Listing</h3>
+  <div class="listing-form-container">
+    <form method="post" action="/listings" id="new-listing-form" enctype="multipart/form-data">
+      <div id="left">
+        <h3 style="font-weight: bold">Create Listing</h3>
 
-      <div class="input-group">
-        <label for="title">Title</label>
-        <input
-          type="text"
-          placeholder="Write catchy title"
-          name="title"
-          class="title"
-          id="title"
-          required
-        />
-      </div>
-
-      <div class="input-group">
-        <label for="type">Which best describes your property</label>
-        <select
-          name="type"
-          id="type"
-          style="padding: 7px; border-radius: 10px; border: 2px solid lightgrey"
-        >
-          <option>Cabins</option>
-          <option>Amazing Pools</option>
-          <option>Beachfront</option>
-          <option>Farms</option>
-          <option>Historical Homes</option>
-          <option>Islands</option>
-          <option>Mountains View</option>
-          <option>Top Cities</option>
-          <option>Trending</option>
-        </select>
-      </div>
-
-      <div class="input-group">
-        <label for="description">Description</label>
-        <textarea
-          placeholder="Description"
-          name="description"
-          class="description"
-          id="description"
-          required
-        ></textarea>
-      </div>
-
-      <div class="input-group">
-        <label for="price">Price</label>
-        <input
-          type="number"
-          placeholder="Enter price"
-          class="price"
-          name="price"
-          id="price"
-          required
-        />
-      </div>
-
-      <div class="input-group">
-        <label for="address">Property Address</label>
-        <input
-          type="text"
-          placeholder="Property Address"
-          name="address"
-          id="address"
-          required
-        />
-
-        <div id="searchedAddresses"></div>
-      </div>
-    </div>
-
-    <div id="right">
-      <div>
-        <div class="box">
-          <span>
-            <p>Guests</p>
-            <span>How many Guests do you want?</span>
-          </span>
-          <span class="value-input">
-            <i class="fa-solid fa-minus"></i>
-            <input type="number" name="guests" value="0" />
-            <i class="fa-solid fa-plus"></i>
-          </span>
+        <div class="input-group">
+          <label for="title">Title</label>
+          <input type="text" placeholder="Write catchy title" name="title" class="title" id="title" required />
         </div>
 
-        <div class="box">
-          <span>
-            <p>Rooms</p>
-            <span>How many rooms do you have?</span>
-          </span>
-          <span class="value-input">
-            <i class="fa-solid fa-minus"></i>
-            <input type="number" name="rooms" value="0" />
-            <i class="fa-solid fa-plus"></i>
-          </span>
+        <div class="input-group">
+          <label for="type">Which best describes your property</label>
+          <select name="type" id="type">
+            <option>Cabins</option>
+            <option>Amazing Pools</option>
+            <option>Beachfront</option>
+            <option>Farms</option>
+            <option>Historical Homes</option>
+            <option>Islands</option>
+            <option>Mountains View</option>
+            <option>Top Cities</option>
+            <option>Trending</option>
+          </select>
         </div>
 
-        <div class="box">
-          <span>
-            <p>Beds</p>
-            <span>How many beds do you have?</span>
-          </span>
-          <span class="value-input">
-            <i class="fa-solid fa-minus"></i>
-            <input type="number" name="beds" value="0" />
-            <i class="fa-solid fa-plus"></i>
-          </span>
+        <div class="input-group">
+          <label for="description">Description</label>
+          <textarea placeholder="Description" name="description" class="description" id="description"
+            required></textarea>
         </div>
 
-        <div class="box">
-          <span>
-            <p>Bathrooms</p>
-            <span>How many bathrooms do you have?</span>
-          </span>
-          <span class="value-input">
-            <i class="fa-solid fa-minus"></i>
-            <input type="number" name="bathrooms" value="0" />
-            <i class="fa-solid fa-plus"></i>
-          </span>
+        <div class="input-group">
+          <label for="price">Price</label>
+          <input type="number" placeholder="Enter price" class="price" name="price" id="price" required />
+        </div>
+
+        <div class="input-group">
+          <label for="address">Property Address</label>
+          <input type="text" placeholder="Property Address" name="address" id="address" required />
+
+          <div id="searchedAddresses"></div>
         </div>
       </div>
 
-      <!-- <div>
-        <label for="rent">For Rent</label>
-        <input
-          style="margin-right: 15px"
-          type="radio"
-          name="rent-sale"
-          id="rent"
-        />
-        <label for="sale">For Sale</label>
-        <input type="radio" name="rent-sale" id="sale" />
-      </div> -->
+      <div id="right">
+        <div>
+          <div class="box">
+            <span>
+              <p>Guests</p>
+              <span>How many Guests do you want?</span>
+            </span>
+            <span class="value-input">
+              <i class="fa-solid fa-minus"></i>
+              <input type="number" name="guests" value="0" />
+              <i class="fa-solid fa-plus"></i>
+            </span>
+          </div>
 
-      <div class="input-group">
-        <label for="image">Images</label>
-        <input
-          type="file"
-          name="images"
-          placeholder="Choose multiple images"
-          class="image"
-          id="image"
-          required
-          multiple
-        />
+          <div class="box">
+            <span>
+              <p>Rooms</p>
+              <span>How many rooms do you have?</span>
+            </span>
+            <span class="value-input">
+              <i class="fa-solid fa-minus"></i>
+              <input type="number" name="rooms" value="0" />
+              <i class="fa-solid fa-plus"></i>
+            </span>
+          </div>
+
+          <div class="box">
+            <span>
+              <p>Beds</p>
+              <span>How many beds do you have?</span>
+            </span>
+            <span class="value-input">
+              <i class="fa-solid fa-minus"></i>
+              <input type="number" name="beds" value="0" />
+              <i class="fa-solid fa-plus"></i>
+            </span>
+          </div>
+
+          <div class="box">
+            <span>
+              <p>Bathrooms</p>
+              <span>How many bathrooms do you have?</span>
+            </span>
+            <span class="value-input">
+              <i class="fa-solid fa-minus"></i>
+              <input type="number" name="bathrooms" value="0" />
+              <i class="fa-solid fa-plus"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="image">Images</label>
+          <input type="file" name="images" placeholder="Choose multiple images" class="image" id="image" required
+            multiple />
+        </div>
+
+        <div class="input-group">
+          <button type="submit" class="btn btn-dark" id="submit-btn">Submit</button>
+        </div>
       </div>
+    </form>
+  </div>
 
-      <!-- <div>// images preview</div> -->
+  <script>
+    const addressInput = document.querySelector("#address");
+    const searchedAddresses = document.querySelector("#searchedAddresses");
+    const minusIcons = document.querySelectorAll(".fa-minus");
+    const plusIcons = document.querySelectorAll(".fa-plus");
+    const form = document.querySelector("#new-listing-form");
+    const submitBtn = document.querySelector("#submit-btn");
 
-      <div class="input-group">
-        <button type="button submit" class="btn btn-dark">Submit</button>
-      </div>
-    </div>
-  </form>
-</div>
+    // Disable button on form submit
+    form.addEventListener("submit", (e) => {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting...";
+    });
 
-<script>
-  const addressInput = document.querySelector("#address");
-  const searchedAddresses = document.querySelector("#searchedAddresses");
-  const minusIcons = document.querySelectorAll(".fa-minus");
-  const plusIcons = document.querySelectorAll(".fa-plus");
+    minusIcons.forEach((i) => {
+      i.addEventListener("click", (e) => {
+        if (e.target.nextElementSibling.value >= 1) {
+          e.target.nextElementSibling.value -= 1;
+        }
+      });
+    });
 
-  minusIcons.forEach((i) => {
-    i.addEventListener("click", (e) => {
-      if (e.target.nextElementSibling.value >= 1) {
-        e.target.nextElementSibling.value -= 1;
+    plusIcons.forEach((i) => {
+      i.addEventListener("click", (e) => {
+        e.target.previousElementSibling.value++;
+      });
+    });
+
+    let searchedRes = [];
+
+    addressInput.addEventListener("input", async (e) => {
+      console.log("inside fnx");
+      fetchPlacesNames(e.target.value);
+    });
+
+    const fetchPlacesNames = async (query) => {
+      const result = await fetch(
+        `https://api.maptiler.com/geocoding/jhang.json?key=qieTv3iJTqtXN27qVMPz`
+      );
+      const data = await result.json();
+      console.log(data);
+
+      searchedAddresses.style.border = "1px solid #e0e0e0";
+
+      // Clear previous results
+      searchedAddresses.innerHTML = "";
+
+      data.features.map((i) => {
+        let indAddress = document.createElement("div");
+        indAddress.innerHTML = `${i.place_name_en}`;
+        indAddress.classList.add("searchedRes");
+        searchedAddresses.append(indAddress);
+      });
+
+      searchedRes = document.querySelectorAll(".searchedRes");
+    };
+
+    window.addEventListener("click", (e) => {
+      if (e.target.classList.contains("searchedRes")) {
+        addressInput.value = e.target.innerHTML;
+        searchedAddresses.innerHTML = "";
+        searchedAddresses.style.border = "none";
       }
     });
-  });
-
-  plusIcons.forEach((i) => {
-    i.addEventListener("click", (e) => {
-      e.target.previousElementSibling.value++;
-    });
-  });
-
-  let searchedRes = [];
-
-  addressInput.addEventListener("input", async (e) => {
-    console.log("inside fnx");
-
-    fetchPlacesNames(e.target.value);
-  });
-
-  const fetchPlacesNames = async (query) => {
-    const result = await fetch(
-      `https://api.maptiler.com/geocoding/jhang.json?key=qieTv3iJTqtXN27qVMPz`
-    );
-    const data = await result.json();
-    console.log(data);
-
-    searchedAddresses.style.border = "1px solid lightgrey";
-
-    data.features.map((i) => {
-      let indAddress = document.createElement("div");
-      indAddress.innerHTML = `${i.place_name_en}`;
-      indAddress.classList.add("searchedRes");
-
-      searchedAddresses.append(indAddress);
-      console.log(searchedAddresses);
-    });
-
-    searchedRes = document.querySelectorAll(".searchedRes");
-  };
-
-  window.addEventListener("click", (e) => {
-    if (e.target.classList.contains("searchedRes")) {
-      addressInput.value = e.target.innerHTML;
-      searchedAddresses.innerHTML = "";
-      searchedAddresses.style.border = "none";
-    }
-  });
-</script>
+  </script>

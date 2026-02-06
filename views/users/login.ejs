@@ -1,65 +1,68 @@
 <% layout("/layouts/boilerplate.ejs") %>
 
-<link rel="stylesheet" href="/css/signup-login.css" />
+  <link rel="stylesheet" href="/css/signup-login.css" />
 
-<div id="login-form-container">
-  <form method="post" action="/login" id="login-form">
-    <h3 style="text-align: center; font-weight: bold">Login on Wanderlust</h3>
+  <div id="login-form-container">
+    <form method="post" action="/login" id="login-form">
+      <h3 style="text-align: center; font-weight: bold">Login on BookNest</h3>
 
-    <div class="input-group">
-      <label for="email">Email</label>
-      <input type="email" name="username" id="email" required />
-    </div>
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" name="username" id="email" required />
+      </div>
 
-    <div class="input-group" style="position: relative">
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" required />
-      <i
-        style="position: absolute; right: 10px; top: 32px"
-        id="eye"
-        class="fa-solid fa-eye"
-      ></i>
-    </div>
+      <div class="input-group" style="position: relative">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required />
+        <i style="position: absolute; right: 10px; top: 32px" id="eye" class="fa-solid fa-eye"></i>
+      </div>
 
-    <button style="color: white" type="button submit" class="btn btn-primary">
-      Login
-    </button>
-
-    <div class="input-group" style="margin-top: 10px">
-      <button type="button" class="btn btn-dark">
-        <a href="/auth/google" style="color: white">Continue with Google</a>
+      <button style="color: white" type="button submit" class="btn btn-primary">
+        Login
       </button>
-    </div>
 
-    <div class="input-group">
-      <button type="button" class="btn btn-dark">
-        <a href="/auth/github" style="color: white">Continue with Github</a>
-      </button>
-    </div>
+      <div class="input-group" style="margin-top: 10px">
+        <button type="button" class="btn btn-dark">
+          <a href="/auth/google" style="color: white">Continue with Google</a>
+        </button>
+      </div>
 
-    <p>
-      Don't have an account?
-      <a href="/signup" style="font-size: 20px">Signup</a>
-    </p>
-  </form>
-</div>
+      <div class="input-group">
+        <button type="button" class="btn btn-dark">
+          <a href="/auth/github" style="color: white">Continue with Github</a>
+        </button>
+      </div>
 
-<script>
-  let input = document.querySelector("#password");
-  let eyeIcon = document.querySelector("#eye");
-  let passType = true;
+      <p>
+        Don't have an account?
+        <a href="/signup" style="font-size: 20px">Signup</a>
+      </p>
+    </form>
+  </div>
 
-  eyeIcon.addEventListener("click", () => {
-    if (passType) {
-      input.type = "text";
-      eyeIcon.classList.remove("fa-eye");
-      eyeIcon.classList.add("fa-eye-slash");
-      passType = false;
-    } else {
-      input.type = "password";
-      eyeIcon.classList.add("fa-eye");
-      eyeIcon.classList.remove("fa-eye-slash");
-      passType = true;
-    }
-  });
-</script>
+  <script>
+    let input = document.querySelector("#password");
+    let eyeIcon = document.querySelector("#eye");
+    let passType = true;
+
+    eyeIcon.addEventListener("click", () => {
+      if (passType) {
+        input.type = "text";
+        eyeIcon.classList.remove("fa-eye");
+        eyeIcon.classList.add("fa-eye-slash");
+        passType = false;
+      } else {
+        input.type = "password";
+        eyeIcon.classList.add("fa-eye");
+        eyeIcon.classList.remove("fa-eye-slash");
+        passType = true;
+      }
+    });
+    const form = document.getElementById("login-form");
+    const submitBtn = form.querySelector('button[type="button submit"]');
+
+    form.addEventListener("submit", () => {
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Logging in...";
+    });
+  </script>
